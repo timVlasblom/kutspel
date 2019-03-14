@@ -1,3 +1,5 @@
-public class Avatar(){
+package Objects;
+
+public class Avatar{
 
         }

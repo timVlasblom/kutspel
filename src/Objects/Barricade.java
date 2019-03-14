@@ -1,3 +1,5 @@
-public class Barricade(){
+package Objects;
+
+public class Barricade{
 
         }

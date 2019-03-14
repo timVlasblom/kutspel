@@ -1,3 +1,5 @@
-public class Key(){
+package Objects;
+
+public class Key{
 
         }
