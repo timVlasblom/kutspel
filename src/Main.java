@@ -1,5 +1,6 @@
 import Objects.Avatar;
 import Objects.Square;
+import Objects.Wall;
 
 import javax.swing.*;
 import java.awt.*;
@@ -37,6 +38,12 @@ public class Main
         //Fill the frame with squares
         Square[][] squares = new Square[row][col];
 
+        for(int i = 0; i < row; i++){
+            for(int j = 0; j < col; j++){
+                    squares[i][j] = new Square();
+            }
+        }
+        squares[3][3] = new Wall();
         drawBoard(squares);
 
         //An avatar is a square, but with different methods and color
@@ -50,9 +57,6 @@ public class Main
         gameboard.removeAll();
         for(int i = 0; i < row; i++){
             for(int j = 0; j < col; j++){
-                if (squares[i][j] != avatar){
-                    squares[i][j] = new Square();
-                }
                 gameboard.add(squares[i][j]);
             }
         }
