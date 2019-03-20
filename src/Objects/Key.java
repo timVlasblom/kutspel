@@ -1,5 +1,7 @@
 package Objects;
 
-public class Key(){
+
+public class Key{
+
 
         }

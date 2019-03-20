@@ -1,4 +1,6 @@
 package Objects;
 
-public class Exit {
-}
+public class Exit{
+
+        }
+
