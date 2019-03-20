@@ -1,5 +1,6 @@
 package Objects;
 
-public class Barricade extends Square{
 
+public class Barricade extends Square{
+  
         }
