@@ -9,8 +9,8 @@ import java.awt.event.KeyEvent;
 
 public class Main
 {
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         Gameboard gameboard = new Gameboard();
         gameboard.setup();
+    }
 }

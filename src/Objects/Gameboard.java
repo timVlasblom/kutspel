@@ -2,9 +2,13 @@ package Objects;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.concurrent.TimeUnit;
 
-public class Gameboard {
+public class Gameboard extends JFrame{
 
     //Size of the frame
     int frameWidth = 1000;
@@ -17,26 +21,28 @@ public class Gameboard {
     Avatar avatar = new Avatar(this);
 
     JPanel gameboard = new JPanel();
-    JFrame frame = new JFrame();
+    //JFrame frame = new JFrame();
 
     Square[][] squares = new Square[row][col];
 
     public void setup() {
         //Setup the frame
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.setSize(frameWidth, frameHeight);
-        frame.setResizable(false);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setSize(frameWidth, frameHeight);
+        setResizable(false);
 
         //Setup the play field
         gameboard.setLayout(new GridLayout(row, col));
 
         //Fill the frame with squares
 
+        add(gameboard);
+        setVisible(true);
         drawBoard();
         //An avatar is a square, but with different methods and color
 
-        frame.add(gameboard);
-        frame.setVisible(true);
+        add(gameboard);
+        setVisible(true);
         while (true){
             avatar.moveAvatar();
             try{
@@ -58,4 +64,5 @@ public class Gameboard {
             }
         }
     }
+
 }
