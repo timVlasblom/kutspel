@@ -2,10 +2,10 @@ package Objects;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
-public class Avatar extends Square {
+public class Avatar extends Square implements KeyListener {
     private int x;
     private int y;
 
@@ -13,15 +13,12 @@ public class Avatar extends Square {
         super(gameboard);
         setBackground(Color.red);
 
-        x = 0;
-        y = 0;
-        addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent event) {
-                moveIt(event);
-            }
-        });
-    }
+            x=0;
+            y=0;
+
+            setFocusable(true);
+            addKeyListener(this);
+        }
 
     public void moveAvatar() {
 
@@ -48,6 +45,25 @@ public class Avatar extends Square {
         if (event.getKeyCode() == KeyEvent.VK_LEFT || event.getKeyCode() == KeyEvent.VK_A) {
             x -= 1;
             super.getGameboard().drawBoard();
+        }
+
+        public void paintComponent(Graphics g){
+            g.setColor(Color.RED);
+            g.fillRect(x, y, 20, 20);
+            repaint();
+        }
+
+        public void keyTyped(KeyEvent e){}
+
+        public void keyPressed(KeyEvent e){
+            if(e.getKeyCode() == KeyEvent.VK_RIGHT){
+                x+=10;
+                repaint();
+            }
+        }
+
+        public void keyReleased(KeyEvent e){
+            repaint();
         }
         if (event.getKeyCode() == KeyEvent.VK_RIGHT || event.getKeyCode() == KeyEvent.VK_D) {
             x += 1;
