@@ -8,7 +8,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.concurrent.TimeUnit;
 
-public class Gameboard extends JFrame{
+public class Gameboard extends JFrame {
 
     //Size of the frame
     int frameWidth = 1000;
@@ -17,6 +17,9 @@ public class Gameboard extends JFrame{
     //Size of the gameboard
     int row = 9;
     int col = 9;
+
+    //Size of the last location array
+    int[] lastLocation = new int[2];
 
     Avatar avatar = new Avatar(this);
 
@@ -43,17 +46,13 @@ public class Gameboard extends JFrame{
 
         add(gameboard);
         setVisible(true);
-        while (true){
-            avatar.moveAvatar();
-            try{
-                TimeUnit.SECONDS.sleep(1);
-            } catch (InterruptedException e){}
-
-        }
     }
 
     public void drawBoard() {
+        //squares[lastLocation[0]][lastLocation[1]] = new Square(this);
+        //squares[0][0] = null;
         squares[avatar.getRow()][avatar.getCol()] = avatar;
+
         gameboard.removeAll();
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < col; j++) {
@@ -63,6 +62,9 @@ public class Gameboard extends JFrame{
                 gameboard.add(squares[i][j]);
             }
         }
+       // lastLocation[0] = avatar.getRow();
+        //lastLocation[1] = avatar.getCol();
+        System.out.println(avatar.getRow() + " " + avatar.getCol());
     }
 
 }

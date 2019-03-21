@@ -13,17 +13,12 @@ public class Avatar extends Square implements KeyListener {
         super(gameboard);
         setBackground(Color.red);
 
-            x=0;
-            y=0;
+        x = 0;
+        y = 0;
 
-            setFocusable(true);
-            addKeyListener(this);
-        }
-
-    public void moveAvatar() {
-
+        setFocusable(true);
+        addKeyListener(this);
     }
-
 
     public int getRow() {
         return this.x;
@@ -33,43 +28,33 @@ public class Avatar extends Square implements KeyListener {
         return this.y;
     }
 
-    public void moveIt(KeyEvent event) {
-
-        if (event.getKeyCode() == KeyEvent.VK_UP || event.getKeyCode() == KeyEvent.VK_W) {
-            y -= 1;
-            super.getGameboard().drawBoard();
-        }
-        if (event.getKeyCode() == KeyEvent.VK_DOWN || event.getKeyCode() == KeyEvent.VK_S) {
-            y += 1;
-            super.getGameboard().drawBoard();
-        }
-        if (event.getKeyCode() == KeyEvent.VK_LEFT || event.getKeyCode() == KeyEvent.VK_A) {
-            x -= 1;
-            super.getGameboard().drawBoard();
-        }
-        if (event.getKeyCode() == KeyEvent.VK_RIGHT || event.getKeyCode() == KeyEvent.VK_D) {
-            x += 1;
-            System.out.println(x);
-            super.getGameboard().drawBoard();
-        }
-    }
-
-    public void paintComponent(Graphics g){
+    public void paintComponent(Graphics g) {
         g.setColor(Color.RED);
         g.fillRect(x, y, 20, 20);
         repaint();
     }
 
-    public void keyTyped(KeyEvent e){}
-
-    public void keyPressed(KeyEvent e){
-        if(e.getKeyCode() == KeyEvent.VK_RIGHT){
-            x+=10;
-            repaint();
-        }
+    public void keyTyped(KeyEvent event) {
     }
 
-    public void keyReleased(KeyEvent e){
+    public void keyPressed(KeyEvent event) {
+        if (event.getKeyCode() == KeyEvent.VK_UP || event.getKeyCode() == KeyEvent.VK_W) {
+            y -= 1;
+        }
+        if (event.getKeyCode() == KeyEvent.VK_DOWN || event.getKeyCode() == KeyEvent.VK_S) {
+            y += 1;
+        }
+        if (event.getKeyCode() == KeyEvent.VK_LEFT || event.getKeyCode() == KeyEvent.VK_A) {
+            x -= 1;
+        }
+        if (event.getKeyCode() == KeyEvent.VK_RIGHT || event.getKeyCode() == KeyEvent.VK_D) {
+            x += 1; }
+        super.getGameboard().drawBoard();
+        repaint();
+    }
+
+
+    public void keyReleased(KeyEvent event) {
         repaint();
     }
 
