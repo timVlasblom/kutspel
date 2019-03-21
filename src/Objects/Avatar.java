@@ -46,29 +46,30 @@ public class Avatar extends Square implements KeyListener {
             x -= 1;
             super.getGameboard().drawBoard();
         }
-
-        public void paintComponent(Graphics g){
-            g.setColor(Color.RED);
-            g.fillRect(x, y, 20, 20);
-            repaint();
-        }
-
-        public void keyTyped(KeyEvent e){}
-
-        public void keyPressed(KeyEvent e){
-            if(e.getKeyCode() == KeyEvent.VK_RIGHT){
-                x+=10;
-                repaint();
-            }
-        }
-
-        public void keyReleased(KeyEvent e){
-            repaint();
-        }
         if (event.getKeyCode() == KeyEvent.VK_RIGHT || event.getKeyCode() == KeyEvent.VK_D) {
             x += 1;
             System.out.println(x);
             super.getGameboard().drawBoard();
         }
     }
+
+    public void paintComponent(Graphics g){
+        g.setColor(Color.RED);
+        g.fillRect(x, y, 20, 20);
+        repaint();
+    }
+
+    public void keyTyped(KeyEvent e){}
+
+    public void keyPressed(KeyEvent e){
+        if(e.getKeyCode() == KeyEvent.VK_RIGHT){
+            x+=10;
+            repaint();
+        }
+    }
+
+    public void keyReleased(KeyEvent e){
+        repaint();
+    }
+
 }

@@ -41,8 +41,8 @@ public class Gameboard extends JFrame{
         drawBoard();
         //An avatar is a square, but with different methods and color
 
-        frame.add(gameboard);
-        frame.setVisible(true);
+        add(gameboard);
+        setVisible(true);
         while (true){
             avatar.moveAvatar();
             try{
