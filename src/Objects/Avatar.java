@@ -28,11 +28,6 @@ public class Avatar extends Square implements KeyListener {
             return this.y;
         }
 
-        public void moveUp(){
-            this.y+=1;
-            repaint();
-        }
-
         public void paintComponent(Graphics g){
             g.setColor(Color.RED);
             g.fillRect(x, y, 20, 20);
