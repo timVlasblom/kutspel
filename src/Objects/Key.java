@@ -1,5 +1,6 @@
 package Objects;
 
+
 public class Key extends Square{
         int code;
 
