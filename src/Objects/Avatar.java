@@ -27,6 +27,7 @@ public class Avatar extends Square {
 
     }
 
+
     public int getRow() {
         return this.x;
     }
