@@ -1,7 +1,11 @@
 package Objects;
 
+import java.awt.*;
 
-public class Wall{
+public class Wall extends Square{
 
-
+        public Wall(){
+                super();
+                setBackground(Color.black);
         }
+}

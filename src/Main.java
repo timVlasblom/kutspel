@@ -1,9 +1,11 @@
 import Objects.Avatar;
 import Objects.Gameboard;
 import Objects.Square;
+import Objects.Wall;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
 
 public class Main
 {
@@ -11,6 +13,4 @@ public class Main
     {
         Gameboard gameboard = new Gameboard();
         gameboard.setup();
-    }
-
 }

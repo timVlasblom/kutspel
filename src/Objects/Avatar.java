@@ -9,9 +9,9 @@ public class Avatar extends Square implements KeyListener {
     private int x;
     private int y;
 
-        public Avatar(){
-            super();
-            setBackground(Color.red);
+    public Avatar(Gameboard gameboard) {
+        super(gameboard);
+        setBackground(Color.red);
 
             x=0;
             y=0;
@@ -20,12 +20,31 @@ public class Avatar extends Square implements KeyListener {
             addKeyListener(this);
         }
 
-        public int getRow(){
-            return this.x;
-        }
+    public void moveAvatar() {
 
-        public int getCol(){
-            return this.y;
+    }
+
+    public int getRow() {
+        return this.x;
+    }
+
+    public int getCol() {
+        return this.y;
+    }
+
+    public void moveIt(KeyEvent event) {
+
+        if (event.getKeyCode() == KeyEvent.VK_UP || event.getKeyCode() == KeyEvent.VK_W) {
+            y -= 1;
+            super.getGameboard().drawBoard();
+        }
+        if (event.getKeyCode() == KeyEvent.VK_DOWN || event.getKeyCode() == KeyEvent.VK_S) {
+            y += 1;
+            super.getGameboard().drawBoard();
+        }
+        if (event.getKeyCode() == KeyEvent.VK_LEFT || event.getKeyCode() == KeyEvent.VK_A) {
+            x -= 1;
+            super.getGameboard().drawBoard();
         }
 
         public void paintComponent(Graphics g){
@@ -46,5 +65,10 @@ public class Avatar extends Square implements KeyListener {
         public void keyReleased(KeyEvent e){
             repaint();
         }
+        if (event.getKeyCode() == KeyEvent.VK_RIGHT || event.getKeyCode() == KeyEvent.VK_D) {
+            x += 1;
+            System.out.println(x);
+            super.getGameboard().drawBoard();
+        }
+    }
 }
-
