@@ -4,11 +4,17 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Square extends JLabel {
+    private Gameboard gameboard;
 
-    public Square(){
+    public Square(Gameboard gameboard){
         setSize(50, 50);
         setOpaque(true);
         setBorder(BorderFactory.createLineBorder(Color.black));
+        this.gameboard = gameboard;
+    }
+
+    public Gameboard getGameboard(){
+        return this.gameboard;
     }
 
     /*public void paintComponent(Graphics g){
