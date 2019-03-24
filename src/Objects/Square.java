@@ -8,10 +8,11 @@ public class Square extends JLabel {
 
     public Square(Gameboard gameboard){
         setBorder(BorderFactory.createLineBorder(Color.black));
-        //this.gameboard = gameboard;
+        setOpaque(false);
+        this.gameboard = gameboard;
     }
 
-    /*public Gameboard getGameboard(){
+    public Gameboard getGameboard(){
         return this.gameboard;
     }
 

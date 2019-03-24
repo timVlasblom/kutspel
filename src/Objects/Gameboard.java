@@ -2,6 +2,7 @@ package Objects;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.concurrent.TimeUnit;
 
 public class Gameboard extends JFrame {
 
@@ -28,9 +29,9 @@ public class Gameboard extends JFrame {
         //Create frame
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setSize(width, height);
+        setLocationRelativeTo(null);
         setResizable(false);
         setVisible(true);
-        setLocationRelativeTo(null);
 
         //Setup the play field
         gameboard.setLayout(new GridLayout(row, col));
@@ -63,6 +64,15 @@ public class Gameboard extends JFrame {
         }
         //lastLocation[0] = avatar.getRow();
         //lastLocation[1] = avatar.getCol();
-        System.out.println(avatar.getRow() + " " + avatar.getCol());
+
+    }
+
+    public void update() {
+        if (squares[9][9] == squares[avatar.getRow()][avatar.getCol()]) {
+            System.out.println("Game finished");
+            dispose();
+        } else {
+            System.out.println(avatar.getRow() + " " + avatar.getCol());
+        }
     }
 }
