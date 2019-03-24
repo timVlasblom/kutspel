@@ -11,9 +11,10 @@ public class Avatar extends Square implements KeyListener {
     private int x1;
     private int y1;
 
+    //Sets up the avatar class
     public Avatar(Gameboard gameboard) {
         super(gameboard);
-        setBackground(Color.red);
+        //SetBackground(Color.red);
 
         x = 0;
         y = 0;
@@ -23,23 +24,29 @@ public class Avatar extends Square implements KeyListener {
         addKeyListener(this);
     }
 
-    public int getRow() {
+    //Returns the x position of the avatar
+    public int getCol() {
         return this.x;
     }
 
-    public int getCol() {
+    //Returns the y position of the avatar
+    public int getRow() {
         return this.y;
     }
 
+    //Makes the player (avatar) red and sets the start location
     public void paintComponent(Graphics g) {
         g.setColor(Color.RED);
         g.fillRect(x1, y1, 50, 50);
+        setOpaque(false);
         repaint();
     }
 
+    //null
     public void keyTyped(KeyEvent event) {
     }
 
+    //Detects if any of the desired keys is pressed and moves the avatar
     public void keyPressed(KeyEvent event) {
         if (event.getKeyCode() == KeyEvent.VK_UP || event.getKeyCode() == KeyEvent.VK_W) {
             y1 -= 100;
@@ -77,7 +84,7 @@ public class Avatar extends Square implements KeyListener {
         repaint();
     }
 
-
+    //null
     public void keyReleased(KeyEvent event) {
         repaint();
     }
