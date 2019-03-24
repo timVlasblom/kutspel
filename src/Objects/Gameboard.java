@@ -2,25 +2,21 @@ package Objects;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.util.concurrent.TimeUnit;
 
 public class Gameboard extends JFrame {
 
-    //Size of the frame
-    int frameWidth = 1000;
-    int frameHeight = 1000;
-
     //Size of the gameboard
-    int row = 9;
-    int col = 9;
+    int row = 10;
+    int col = 10;
 
-    //Size of the last location array
+    //Size of the last known location array
     int[] lastLocation = new int[2];
 
+    //Size of the frame
+    final int FRAME_WIDTH = 1000;
+    final int FRAME_HEIGHT = 1000;
+
+    //Create new avatar
     Avatar avatar = new Avatar(this);
 
     JPanel gameboard = new JPanel();
@@ -29,23 +25,25 @@ public class Gameboard extends JFrame {
     Square[][] squares = new Square[row][col];
 
     public void setup() {
-        //Setup the frame
+        //Create frame
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setSize(frameWidth, frameHeight);
+        setSize(FRAME_WIDTH, FRAME_HEIGHT);
         setResizable(false);
 
         //Setup the play field
         gameboard.setLayout(new GridLayout(row, col));
 
-        //Fill the frame with squares
+        // Draw lines
 
+        // Create avatar (first because we don't want to place a wall on his head)
+
+        //Fill the frame with squares and set it visible
         add(gameboard);
         setVisible(true);
         drawBoard();
-        //An avatar is a square, but with different methods and color
 
-        add(gameboard);
-        setVisible(true);
+        // Do board check to see if the level is possible
+
     }
 
     public void drawBoard() {
@@ -62,9 +60,8 @@ public class Gameboard extends JFrame {
                 gameboard.add(squares[i][j]);
             }
         }
-       // lastLocation[0] = avatar.getRow();
+        //lastLocation[0] = avatar.getRow();
         //lastLocation[1] = avatar.getCol();
         System.out.println(avatar.getRow() + " " + avatar.getCol());
     }
-
 }
