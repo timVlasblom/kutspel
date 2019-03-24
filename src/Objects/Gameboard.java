@@ -13,8 +13,8 @@ public class Gameboard extends JFrame {
     int[] lastLocation = new int[2];
 
     //Size of the frame
-    final int FRAME_WIDTH = 1000;
-    final int FRAME_HEIGHT = 1000;
+    static int width = 1000;
+    static int height = 1000;
 
     //Create new avatar
     Avatar avatar = new Avatar(this);
@@ -27,8 +27,10 @@ public class Gameboard extends JFrame {
     public void setup() {
         //Create frame
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setSize(FRAME_WIDTH, FRAME_HEIGHT);
+        setSize(width, height);
         setResizable(false);
+        setVisible(true);
+        setLocationRelativeTo(null);
 
         //Setup the play field
         gameboard.setLayout(new GridLayout(row, col));
@@ -39,7 +41,6 @@ public class Gameboard extends JFrame {
 
         //Fill the frame with squares and set it visible
         add(gameboard);
-        setVisible(true);
         drawBoard();
 
         // Do board check to see if the level is possible
