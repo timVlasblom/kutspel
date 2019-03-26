@@ -5,19 +5,22 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class Avatar extends Square implements KeyListener {
+public class Avatar extends JLabel implements KeyListener {
     private int x;
     private int y;
+    private Gameboard gameboard;
 
     //Sets up the avatar class
     public Avatar(Gameboard gameboard) {
-        super(gameboard);
+        setBorder(BorderFactory.createLineBorder(Color.black));
+        setOpaque(false);
         //SetBackground(Color.red);
-
+        setSize(1000,1000);
         x = 0;
         y = 0;
         setFocusable(true);
         addKeyListener(this);
+        this.gameboard = gameboard;
     }
 
     //Returns the x position of the avatar
@@ -33,7 +36,7 @@ public class Avatar extends Square implements KeyListener {
     //Makes the player (avatar) red and sets the start location
     public void paintComponent(Graphics g) {
         g.setColor(Color.RED);
-        g.fillRect(x * 100, y * 100, 50, 50);
+        g.fillRect(x * 100, y * 100, 100, 100);
         setOpaque(false);
         repaint();
     }
@@ -68,7 +71,8 @@ public class Avatar extends Square implements KeyListener {
                 x = 9;
             }
         }
-        super.getGameboard().update();
+        System.out.println(x + " " + y);
+        //gameboard.update();
         repaint();
     }
 

@@ -37,7 +37,7 @@ public class Gameboard extends JFrame {
         setVisible(true);
 
         //Sets up the size of the play field
-        gameboard.setLayout(new GridLayout(col, row));
+        gameboard.setLayout(new BorderLayout());
 
         //Draw lines (instead of squares?)
 
@@ -54,18 +54,11 @@ public class Gameboard extends JFrame {
         //squares[0][0] = null;
 
         //Creates avatar (first because we don't want to place a wall on his head)
-        squares[avatar.getCol()][avatar.getRow()] = avatar;
 
         //Fills the frame with squares
         gameboard.removeAll();
-        for (int i = 0; i < col; i++) {
-            for (int j = 0; j < row; j++) {
-                if (squares[i][j] != avatar) {
-                    squares[i][j] = new Square(this);
-                }
-                gameboard.add(squares[i][j]);
-            }
-        }
+        gameboard.add(avatar);
+        //avatar.setSize(1000,1000);
         //lastLocation[0] = avatar.getCow();
         //lastLocation[1] = avatar.getRol();
 
