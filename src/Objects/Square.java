@@ -13,6 +13,8 @@ public class Square extends JLabel {
         this.gameboard = gameboard;
     }
 
+
+
     //Returns gameboard
     public Gameboard getGameboard() {
         return this.gameboard;

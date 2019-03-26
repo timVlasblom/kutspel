@@ -37,7 +37,6 @@ public class Avatar extends JLabel implements KeyListener {
     public void paintComponent(Graphics g) {
         g.setColor(Color.RED);
         g.fillRect(x * 100, y * 100, 100, 100);
-        setOpaque(false);
         repaint();
     }
 

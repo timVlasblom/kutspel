@@ -49,18 +49,13 @@ public class Gameboard extends JFrame {
 
     }
 
-    public void drawBoard() {
-        //squares[lastLocation[0]][lastLocation[1]] = new Square(this);
-        //squares[0][0] = null;
 
+    public void drawBoard() {
         //Creates avatar (first because we don't want to place a wall on his head)
 
-        //Fills the frame with squares
         gameboard.removeAll();
         gameboard.add(avatar);
-        //avatar.setSize(1000,1000);
-        //lastLocation[0] = avatar.getCow();
-        //lastLocation[1] = avatar.getRol();
+        gameboard.add(new Wall(this, 2, 2));
 
     }
 
