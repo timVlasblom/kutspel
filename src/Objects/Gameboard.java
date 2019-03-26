@@ -38,6 +38,7 @@ public class Gameboard extends JFrame {
 
         //Sets up the size of the play field
         gameboard.setLayout(new BorderLayout());
+        gameboard.setPreferredSize(new Dimension(width, height));
 
         //Draw lines (instead of squares?)
 

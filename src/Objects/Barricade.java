@@ -3,8 +3,8 @@ package Objects;
 
 public class Barricade extends Square{
         int code;
-        public Barricade(Gameboard gameboard){
-                super(gameboard);
+        public Barricade(Gameboard gameboard, int x, int y){
+                super(gameboard, x, y);
         }
 
         public int getCode() {

@@ -12,7 +12,7 @@ public class Avatar extends JLabel implements KeyListener {
 
     //Sets up the avatar class
     public Avatar(Gameboard gameboard) {
-        setBorder(BorderFactory.createLineBorder(Color.black));
+        //setBorder(BorderFactory.createLineBorder(Color.black));
         setOpaque(false);
         //SetBackground(Color.red);
         setSize(1000,1000);
