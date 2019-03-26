@@ -9,66 +9,71 @@ public class Avatar extends Square implements KeyListener {
     private int x;
     private int y;
 
+    //Sets up the avatar class
     public Avatar(Gameboard gameboard) {
         super(gameboard);
-        setBackground(Color.red);
+        //SetBackground(Color.red);
 
-            x=0;
-            y=0;
-
-            setFocusable(true);
-            addKeyListener(this);
-        }
-
-    public void moveAvatar() {
-
+        x = 0;
+        y = 0;
+        setFocusable(true);
+        addKeyListener(this);
     }
 
-    public int getRow() {
+    //Returns the x position of the avatar
+    public int getCol() {
         return this.x;
     }
 
-    public int getCol() {
+    //Returns the y position of the avatar
+    public int getRow() {
         return this.y;
     }
 
-    public void moveIt(KeyEvent event) {
-
-        if (event.getKeyCode() == KeyEvent.VK_UP || event.getKeyCode() == KeyEvent.VK_W) {
-            y -= 1;
-            super.getGameboard().drawBoard();
-        }
-        if (event.getKeyCode() == KeyEvent.VK_DOWN || event.getKeyCode() == KeyEvent.VK_S) {
-            y += 1;
-            super.getGameboard().drawBoard();
-        }
-        if (event.getKeyCode() == KeyEvent.VK_LEFT || event.getKeyCode() == KeyEvent.VK_A) {
-            x -= 1;
-            super.getGameboard().drawBoard();
-        }
-        if (event.getKeyCode() == KeyEvent.VK_RIGHT || event.getKeyCode() == KeyEvent.VK_D) {
-            x += 1;
-            System.out.println(x);
-            super.getGameboard().drawBoard();
-        }
-    }
-
-    public void paintComponent(Graphics g){
+    //Makes the player (avatar) red and sets the start location
+    public void paintComponent(Graphics g) {
         g.setColor(Color.RED);
-        g.fillRect(x, y, 20, 20);
+        g.fillRect(x * 100, y * 100, 50, 50);
+        setOpaque(false);
         repaint();
     }
 
-    public void keyTyped(KeyEvent e){}
-
-    public void keyPressed(KeyEvent e){
-        if(e.getKeyCode() == KeyEvent.VK_RIGHT){
-            x+=10;
-            repaint();
-        }
+    //null
+    public void keyTyped(KeyEvent event) {
     }
 
-    public void keyReleased(KeyEvent e){
+    //Detects if any of the desired keys is pressed and moves the avatar
+    public void keyPressed(KeyEvent event) {
+        if (event.getKeyCode() == KeyEvent.VK_UP || event.getKeyCode() == KeyEvent.VK_W) {
+            y -= 1;
+            if (y <= -1) {
+                y = 0;
+            }
+        }
+        if (event.getKeyCode() == KeyEvent.VK_DOWN || event.getKeyCode() == KeyEvent.VK_S) {
+            y += 1;
+            if (y > 9) {
+                y = 9;
+            }
+        }
+        if (event.getKeyCode() == KeyEvent.VK_LEFT || event.getKeyCode() == KeyEvent.VK_A) {
+            x -= 1;
+            if (x <= -1) {
+                x = 0;
+            }
+        }
+        if (event.getKeyCode() == KeyEvent.VK_RIGHT || event.getKeyCode() == KeyEvent.VK_D) {
+            x += 1;
+            if (x > 9) {
+                x = 9;
+            }
+        }
+        super.getGameboard().update();
+        repaint();
+    }
+
+    //null
+    public void keyReleased(KeyEvent event) {
         repaint();
     }
 
