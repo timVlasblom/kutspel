@@ -15,7 +15,7 @@ public class Avatar extends JLabel implements KeyListener {
         //setBorder(BorderFactory.createLineBorder(Color.black));
         setOpaque(false);
         //SetBackground(Color.red);
-        setSize(1000,1000);
+        setSize(1000, 1000);
         x = 0;
         y = 0;
         setFocusable(true);

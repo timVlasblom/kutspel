@@ -6,8 +6,8 @@ import java.awt.*;
 public class Gameboard extends JFrame {
 
     //Size of the application frame, in pixels
-    static int width = 1000;
-    static int height = 1000;
+    static int width = 1006;
+    static int height = 1029;
 
     //The amount of squares in the field, colum x row
     int col = 10;
@@ -38,7 +38,7 @@ public class Gameboard extends JFrame {
 
         //Sets up the size of the play field
         gameboard.setLayout(new BorderLayout());
-        gameboard.setPreferredSize(new Dimension(width, height));
+        //gameboard.setPreferredSize(new Dimension(width, height));
 
         //Draw lines (instead of squares?)
 
@@ -57,7 +57,7 @@ public class Gameboard extends JFrame {
         gameboard.removeAll();
         gameboard.add(avatar);
         gameboard.add(new Wall(this, 2, 2));
-
+        gameboard.add(new Wall(this, 3, 3));
     }
 
     //Shows the location of the avatar in the run console and closes the frame when the game has been finished
