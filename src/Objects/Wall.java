@@ -6,7 +6,7 @@ public class Wall extends Square{
 
         public Wall(Gameboard gameboard, int x, int y){
                 super(gameboard, x, y);
-                setBackground(Color.black);
+                //setBackground(Color.black);
                 repaint();
         }
 
