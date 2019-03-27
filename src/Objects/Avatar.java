@@ -70,8 +70,8 @@ public class Avatar extends JLabel implements KeyListener {
                 x = 9;
             }
         }
-        System.out.println(x + " " + y);
-        //gameboard.update();
+        //System.out.println(x + " " + y);
+        gameboard.update();
         repaint();
     }
 

@@ -57,12 +57,12 @@ public class Gameboard extends JFrame {
         gameboard.removeAll();
         gameboard.add(avatar);
         gameboard.add(new Wall(this, 2, 2));
-        gameboard.add(new Wall(this, 3, 3));
+        gameboard.add(new Exit(this, 9, 9));
     }
 
     //Shows the location of the avatar in the run console and closes the frame when the game has been finished
     public void update() {
-        if (squares[9][9] == squares[avatar.getCol()][avatar.getRow()]) {
+        if (squares[avatar.getCol()][avatar.getRow()] == squares[9][9]) {
             System.out.println("Game finished");
             dispose();
         } else {
