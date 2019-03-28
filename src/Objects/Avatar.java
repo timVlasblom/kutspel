@@ -15,7 +15,7 @@ public class Avatar extends JLabel implements KeyListener {
         //setBorder(BorderFactory.createLineBorder(Color.black));
         setOpaque(false);
         //SetBackground(Color.red);
-        setSize(1000,1000);
+        setSize(1000, 1000);
         x = 0;
         y = 0;
         setFocusable(true);
@@ -31,6 +31,15 @@ public class Avatar extends JLabel implements KeyListener {
     //Returns the y position of the avatar
     public int getRow() {
         return this.y;
+    }
+
+    public void resetCol() {
+        x = 0;
+    }
+
+    //Returns the y position of the avatar
+    public void resetRow() {
+        y = 0;
     }
 
     //Makes the player (avatar) red and sets the start location
@@ -70,8 +79,7 @@ public class Avatar extends JLabel implements KeyListener {
                 x = 9;
             }
         }
-        System.out.println(x + " " + y);
-        //gameboard.update();
+        gameboard.update();
         repaint();
     }
 

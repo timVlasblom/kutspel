@@ -6,8 +6,8 @@ import java.awt.*;
 public class Gameboard extends JFrame {
 
     //Size of the application frame, in pixels
-    static int width = 1000;
-    static int height = 1030;
+    static int width = 1006;
+    static int height = 1029;
 
     //The amount of squares in the field, colum x row
     int col = 10;
@@ -21,7 +21,6 @@ public class Gameboard extends JFrame {
 
     //Creates new gameboard
     JPanel gameboard = new JPanel();
-    //JFrame frame = new JFrame();
 
     //Creates new squares
     Square[][] squares = new Square[col][row];
@@ -38,37 +37,38 @@ public class Gameboard extends JFrame {
 
         //Sets up the size of the play field
         gameboard.setLayout(new BorderLayout());
-        gameboard.setPreferredSize(new Dimension(1000, 1000));
+        //gameboard.setPreferredSize(new Dimension(width, height));
 
         //Draw lines (instead of squares?)
 
         //Adds and draws the gameboard
-        add(gameboard);
+        getContentPane().add(gameboard);
         drawBoard();
 
         //Do board check to see if the level is possible
-
     }
 
 
     public void drawBoard() {
         //Creates avatar (first because we don't want to place a wall on his head)
-
         gameboard.removeAll();
         gameboard.add(avatar);
         gameboard.add(new Barricade(this, 5,5));
         gameboard.add(new Wall(this, 2, 2));
         gameboard.add(new Wall(this, 4, 4));
-
     }
 
-    //Shows the location of the avatar in the run console and closes the frame when the game has been finished
+    //Shows the location of the avatar in the run console and restarts the game when the game has been finished
     public void update() {
-        if (squares[9][9] == squares[avatar.getCol()][avatar.getRow()]) {
-            System.out.println("Game finished");
-            dispose();
+        if (9 == avatar.getCol() & 9 == avatar.getRow()) {
+            JOptionPane.showMessageDialog(null, "Game finished");
+            avatar.resetCol();
+            avatar.resetRow();
         } else {
             System.out.println(avatar.getCol() + " " + avatar.getRow());
+            lastLocation[0] = avatar.getCol();
+            lastLocation[1] = avatar.getRow();
+           // System.out.println(lastLocation[][]);
         }
     }
 }

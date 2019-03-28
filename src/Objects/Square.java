@@ -10,21 +10,18 @@ public class Square extends JLabel {
 
     //Sets square settings
     public Square(Gameboard gameboard, int x, int y) {
-        setOpaque(false);
         this.gameboard = gameboard;
-
         this.x = x;
         this.y = y;
     }
 
-    public int getX(){
+    public int getX() {
         return this.x;
     }
 
-    public int getY(){
+    public int getY() {
         return this.y;
     }
-
 
     //Returns gameboard
     public Gameboard getGameboard() {
