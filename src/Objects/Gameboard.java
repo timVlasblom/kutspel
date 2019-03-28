@@ -62,9 +62,10 @@ public class Gameboard extends JFrame {
 
     //Shows the location of the avatar in the run console and closes the frame when the game has been finished
     public void update() {
-        if (squares[avatar.getCol()][avatar.getRow()] == squares[9][9]) {
-            System.out.println("Game finished");
-            dispose();
+        if (9 == avatar.getCol() & 9 == avatar.getRow()) {
+            JOptionPane.showMessageDialog(null, "Game finished");
+            avatar.resetCol();
+            avatar.resetRow();
         } else {
             System.out.println(avatar.getCol() + " " + avatar.getRow());
         }
