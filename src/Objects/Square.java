@@ -5,12 +5,22 @@ import java.awt.*;
 
 public class Square extends JLabel {
     private Gameboard gameboard;
+    private int x;
+    private int y;
 
     //Sets square settings
-    public Square(Gameboard gameboard) {
-        setBorder(BorderFactory.createLineBorder(Color.black));
-        setOpaque(false);
+    public Square(Gameboard gameboard, int x, int y) {
         this.gameboard = gameboard;
+        this.x = x;
+        this.y = y;
+    }
+
+    public int getX() {
+        return this.x;
+    }
+
+    public int getY() {
+        return this.y;
     }
 
     //Returns gameboard
