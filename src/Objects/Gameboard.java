@@ -21,7 +21,6 @@ public class Gameboard extends JFrame {
 
     //Creates new gameboard
     JPanel gameboard = new JPanel();
-    //JFrame frame = new JFrame();
 
     //Creates new squares
     Square[][] squares = new Square[col][row];
@@ -43,11 +42,10 @@ public class Gameboard extends JFrame {
         //Draw lines (instead of squares?)
 
         //Adds and draws the gameboard
-        add(gameboard);
+        getContentPane().add(gameboard);
         drawBoard();
 
         //Do board check to see if the level is possible
-
     }
 
 
@@ -55,8 +53,8 @@ public class Gameboard extends JFrame {
         //Creates avatar (first because we don't want to place a wall on his head)
         gameboard.removeAll();
         gameboard.add(avatar);
-        gameboard.add(new Wall(this, 2, 2));
-        gameboard.add(new Exit(this, 9, 9));
+        gameboard.add(new Wall(this, 5, 2));
+        //gameboard.add(new Exit(this, 9, 9));
     }
 
     //Shows the location of the avatar in the run console and restarts the game when the game has been finished
@@ -67,6 +65,9 @@ public class Gameboard extends JFrame {
             avatar.resetRow();
         } else {
             System.out.println(avatar.getCol() + " " + avatar.getRow());
+            lastLocation[0] = avatar.getCol();
+            lastLocation[1] = avatar.getRow();
+           // System.out.println(lastLocation[][]);
         }
     }
 }

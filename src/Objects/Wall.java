@@ -11,7 +11,7 @@ public class Wall extends Square {
 
     public void paintComponent(Graphics g) {
         g.setColor(Color.BLUE);
-        g.fillRect(getX() * 99, getY() * 99, 100, 100);
+        g.fillRect(getX() * 100, getY() * 100, 100, 100);
         repaint();
     }
 }
