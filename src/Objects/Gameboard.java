@@ -53,8 +53,9 @@ public class Gameboard extends JFrame {
         //Creates avatar (first because we don't want to place a wall on his head)
         gameboard.removeAll();
         gameboard.add(avatar);
-        gameboard.add(new Wall(this, 5, 2));
-        //gameboard.add(new Exit(this, 9, 9));
+        gameboard.add(new Barricade(this, 5,5));
+        gameboard.add(new Wall(this, 2, 2));
+        gameboard.add(new Wall(this, 4, 4));
     }
 
     //Shows the location of the avatar in the run console and restarts the game when the game has been finished
