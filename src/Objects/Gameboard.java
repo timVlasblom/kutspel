@@ -53,14 +53,13 @@ public class Gameboard extends JFrame {
 
     public void drawBoard() {
         //Creates avatar (first because we don't want to place a wall on his head)
-
         gameboard.removeAll();
         gameboard.add(avatar);
         gameboard.add(new Wall(this, 2, 2));
         gameboard.add(new Exit(this, 9, 9));
     }
 
-    //Shows the location of the avatar in the run console and closes the frame when the game has been finished
+    //Shows the location of the avatar in the run console and restarts the game when the game has been finished
     public void update() {
         if (9 == avatar.getCol() & 9 == avatar.getRow()) {
             JOptionPane.showMessageDialog(null, "Game finished");
