@@ -4,8 +4,8 @@ import java.awt.*;
 
 public class Exit extends Square {
 
-    public Exit(Gameboard gameboard, int x, int y) {
-        super(gameboard, x, y);
+    public Exit(int x, int y) {
+        super(x, y);
         repaint();
     }
 
