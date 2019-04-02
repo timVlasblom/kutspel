@@ -11,9 +11,6 @@ public class Avatar extends JComponent implements KeyListener {
 
     private Gameboard gameboard;
 
-    //Size of the last known location array of the avatar
-    int[] lastLocation = new int[2];
-
     //Sets up the avatar class
     public Avatar(Gameboard gameboard) {
         xPos = 0;
@@ -43,22 +40,22 @@ public class Avatar extends JComponent implements KeyListener {
     //Detects if any of the desired keys is pressed and moves the avatar if possible
     public void keyPressed(KeyEvent event) {
         if (event.getKeyCode() == KeyEvent.VK_UP || event.getKeyCode() == KeyEvent.VK_W) {
-            if (!checkPossible(0, -1)) {
+            if (checkMovable(0, -1)) {
                 moveAvatar(0, -1);
             }
         }
         if (event.getKeyCode() == KeyEvent.VK_DOWN || event.getKeyCode() == KeyEvent.VK_S) {
-            if (!checkPossible(0, 1)) {
+            if (checkMovable(0, 1)) {
                 moveAvatar(0, 1);
             }
         }
         if (event.getKeyCode() == KeyEvent.VK_LEFT || event.getKeyCode() == KeyEvent.VK_A) {
-            if (!checkPossible(-1, 0)) {
+            if (checkMovable(-1, 0)) {
                 moveAvatar(-1, 0);
             }
         }
         if (event.getKeyCode() == KeyEvent.VK_RIGHT || event.getKeyCode() == KeyEvent.VK_D) {
-            if (!checkPossible(1, 0)) {
+            if (checkMovable(1, 0)) {
                 moveAvatar(1, 0);
             }
         }
@@ -66,13 +63,6 @@ public class Avatar extends JComponent implements KeyListener {
         checkFinish();
     }
 
-    //Shows the location of the avatar in the run console and restarts the game when the game has been finished
-    public void checkFinish() {
-        if (9 == getCol() & 9 == getRow()) {
-            JOptionPane.showMessageDialog(null, "Game finished");
-            resetColRow();
-        }
-    }
 
     public void keyReleased(KeyEvent event) {
     }
@@ -85,15 +75,31 @@ public class Avatar extends JComponent implements KeyListener {
         yPos += y;
     }
 
+    //Shows the location of the avatar in the run console and restarts the game when the game has been finished
+    public void checkFinish() {
+        if (gameboard.boardLength - 1 == getCol() & gameboard.boardLength == getRow()) {
+            JOptionPane.showMessageDialog(null, "Game finished");
+            resetColRow();
+        }
+    }
+
+    public boolean checkMovable(int x, int y) {
+        if (((xPos + x) >= 0) && ((xPos + x) <= gameboard.boardLength - 1) && ((yPos + y) >= 0) && ((yPos + y) <= gameboard.boardLength - 1)) {
+            if (!checkPossible(x, y)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public boolean checkPossible(int x, int y) {
-        for (int i = 0; i < gameboard.board.length; i++) {
-            for (int j = 0; j < gameboard.board.length; j++) {
+
+        for (int i = 0; i < gameboard.boardLength; i++) {
+            for (int j = 0; j < gameboard.boardLength; j++) {
                 if (gameboard.board[i][j] == gameboard.board[xPos + x][yPos + y]) {
-//                    if (!(xPos <= 0) && !(xPos >= 9) && !(yPos <= 0) && !(yPos >= 9)) {
                     if (gameboard.board[i][j] instanceof Wall || gameboard.board[i][j] instanceof Barricade) {
                         return true;
                     }
-//                    }
                 }
             }
         }

@@ -13,13 +13,17 @@ public class Gameboard extends JFrame {
     static int width = 1003;
     static int height = 1029;
 
+    int boardLength;
+
     //Creates new avatar and gameboard, makes a list of all objects, the amount of squares in the field, colum x row
     Avatar avatar = new Avatar(this);
     JPanel gameboard = new JPanel();
     Square[][] board = new Square[10][10];
 
+
     //Sets up the game; Create frame with its attributes, draws level, adds gameboard, sets exit on close of program, sets size of frame, sets not resizable, sets location in middle, sets visible
     public void setup() {
+        boardLength = board.length;
         startLevel();
         add(gameboard);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
