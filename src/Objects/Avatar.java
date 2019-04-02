@@ -79,7 +79,6 @@ public class Avatar extends JComponent implements KeyListener {
             }
         }
         gameboard.update();
-        repaint();
     }
 
 //    null
