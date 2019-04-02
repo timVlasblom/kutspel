@@ -62,7 +62,11 @@ public class Gameboard extends JFrame {
         board[3][3] = new Wall();
         board[4][4] = new Wall();
         board[9][9] = new Exit();
-        board[6][6] = new Barricade();
+
+        Key key100 = new Key();
+        board[2][2] = key100;
+
+        board[6][6] = new Barricade(key100);
     }
 
     //Shows the location of the avatar in the run console and restarts the game when the game has been finished
@@ -76,7 +80,6 @@ public class Gameboard extends JFrame {
             System.out.println(avatar.getCol() + " " + avatar.getRow());
             lastLocation[0] = avatar.getCol();
             lastLocation[1] = avatar.getRow();
-           // System.out.println(lastLocation[][]);
         }
     }
 
@@ -110,6 +113,5 @@ public class Gameboard extends JFrame {
                 g2d.drawRect(i * 100, j *100 + 26, 100 , 100);
             }
         }
-        System.out.println("hoi");
     }
 }

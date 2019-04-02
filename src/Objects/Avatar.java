@@ -9,6 +9,7 @@ public class Avatar extends JComponent implements KeyListener {
     private int xPos;
     private int yPos;
     private Gameboard gameboard;
+    private Key key;
 
     //Sets up the avatar class
     public Avatar(Gameboard gameboard) {
@@ -20,6 +21,10 @@ public class Avatar extends JComponent implements KeyListener {
         setFocusable(true);
         addKeyListener(this);
         this.gameboard = gameboard;
+    }
+
+    public Key getKey(){
+        return this.key;
     }
 
     //Returns the x position of the avatar
