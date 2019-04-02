@@ -11,6 +11,9 @@ public class Avatar extends JComponent implements KeyListener {
 
     private Gameboard gameboard;
 
+    //Size of the last known location array of the avatar
+    int[] lastLocation = new int[2];
+
     //Sets up the avatar class
     public Avatar(Gameboard gameboard) {
         xPos = 0;
@@ -34,6 +37,7 @@ public class Avatar extends JComponent implements KeyListener {
     public void resetColRow() {
         xPos = 0;
         yPos = 0;
+        gameboard.repaint();
     }
 
     //Detects if any of the desired keys is pressed and moves the avatar
@@ -71,12 +75,12 @@ public class Avatar extends JComponent implements KeyListener {
         if (9 == getCol() & 9 == getRow()) {
             JOptionPane.showMessageDialog(null, "Game finished");
             resetColRow();
+
         } else {
-            //avatar.used();
+            used();
             System.out.println(getCol() + " " + getRow());
-//            lastLocation[0] = avatar.getCol();
-//            lastLocation[1] = avatar.getRow();
-//            System.out.println(lastLocation[][]);
+            lastLocation[0] = getCol();
+            lastLocation[1] = getRow();
         }
     }
 
@@ -87,10 +91,13 @@ public class Avatar extends JComponent implements KeyListener {
     }
 
     public void used() {
-        for (int i = 0; gameboard.board.length > i; i++) {
-            for (int j = 0; gameboard.board[i].length > j; j++) {
-                if (gameboard.board[i][j] != null) {
-                    System.out.println("kan niet");
+        for (int i = 0; i < gameboard.board.length; i++) {
+            for (int j = 0; j < gameboard.board.length; j++) {
+                if (gameboard.board[i][j] == gameboard.board[xPos][yPos]) {
+                    if (gameboard.board[i][j] instanceof Wall || gameboard.board[i][j] instanceof Barricade) {
+                        xPos = lastLocation[0];
+                        yPos = lastLocation[1];
+                    }
                 }
             }
         }
