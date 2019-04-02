@@ -43,21 +43,6 @@ public class Gameboard extends JFrame {
         board[6][6] = new Barricade();
     }
 
-    //Shows the location of the avatar in the run console and restarts the game when the game has been finished
-    public void update() {
-        repaint();
-        if (9 == avatar.getCol() & 9 == avatar.getRow()) {
-            JOptionPane.showMessageDialog(null, "Game finished");
-            avatar.resetColRow();
-        } else {
-            //avatar.used();
-            System.out.println(avatar.getCol() + " " + avatar.getRow());
-//            lastLocation[0] = avatar.getCol();
-//            lastLocation[1] = avatar.getRow();
-//            System.out.println(lastLocation[][]);
-        }
-    }
-
     public void paint(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
         g2d.clearRect(0, 0, width, height);

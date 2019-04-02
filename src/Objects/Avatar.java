@@ -62,7 +62,22 @@ public class Avatar extends JComponent implements KeyListener {
                 xPos = 9;
             }
         }
-        gameboard.update();
+        gameboard.repaint();
+        update();
+    }
+
+    //Shows the location of the avatar in the run console and restarts the game when the game has been finished
+    public void update() {
+        if (9 == getCol() & 9 == getRow()) {
+            JOptionPane.showMessageDialog(null, "Game finished");
+            resetColRow();
+        } else {
+            //avatar.used();
+            System.out.println(getCol() + " " + getRow());
+//            lastLocation[0] = avatar.getCol();
+//            lastLocation[1] = avatar.getRow();
+//            System.out.println(lastLocation[][]);
+        }
     }
 
     public void keyReleased(KeyEvent event) {
