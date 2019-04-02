@@ -40,7 +40,11 @@ public class Gameboard extends JFrame {
         board[3][3] = new Wall();
         board[4][4] = new Wall();
         board[9][9] = new Exit();
-        board[6][6] = new Barricade();
+
+        Key key100 = new Key();
+        board[2][2] = key100;
+
+        board[6][6] = new Barricade(key100);
     }
 
     //Shows the location of the avatar in the run console and restarts the game when the game has been finished

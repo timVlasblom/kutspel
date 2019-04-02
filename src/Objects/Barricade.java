@@ -1,14 +1,13 @@
 package Objects;
 
-public class Barricade extends Square {
-    int code;
+public class Barricade extends Square{
+        Key key;
+        public Barricade(Key key){
+                super();
+                this.key = key;
+        }
 
-    public Barricade() {
-        super();
-    }
-
-    public int getCode() {
-        return code;
-    }
-
+        public Key getCode() {
+                return key;
+        }
 }
