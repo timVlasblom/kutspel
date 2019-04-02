@@ -13,7 +13,6 @@ public class Avatar extends JComponent implements KeyListener {
     //Sets up the avatar class
     public Avatar(Gameboard gameboard) {
         //setBorder(BorderFactory.createLineBorder(Color.black));
-        setOpaque(false);
         //SetBackground(Color.red);
         setSize(1000, 1000);
         xPos = 0;
@@ -43,11 +42,11 @@ public class Avatar extends JComponent implements KeyListener {
     }
 
     //Makes the player (avatar) red and sets the start location
-    public void paintComponent(Graphics g) {
-        g.setColor(Color.RED);
-        g.fillRect(xPos * 100, yPos * 100, 100, 100);
-        ///repaint();
-    }
+//    public void paintComponent(Graphics g) {
+//        g.setColor(Color.RED);
+//        g.fillRect(xPos * 100, yPos * 100, 100, 100);
+//        ///repaint();
+//    }
 
     //null
     public void keyTyped(KeyEvent event) {
@@ -83,9 +82,9 @@ public class Avatar extends JComponent implements KeyListener {
         repaint();
     }
 
-    //null
+//    null
     public void keyReleased(KeyEvent event) {
-        repaint();
+        gameboard.update();
     }
 
 }
