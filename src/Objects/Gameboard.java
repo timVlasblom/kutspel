@@ -28,7 +28,6 @@ public class Gameboard extends JFrame {
     Avatar avatar = new Avatar(this);
 
     //makes a list of all objects
-    ArrayList<Square> list = new ArrayList<Square>();
     Square[][] board = new Square[10][10];
 
     //Creates new gameboard
@@ -111,5 +110,6 @@ public class Gameboard extends JFrame {
                 g2d.drawRect(i * 100, j *100 + 26, 100 , 100);
             }
         }
+        System.out.println("hoi");
     }
 }
