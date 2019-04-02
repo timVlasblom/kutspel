@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 public class Gameboard extends JFrame {
 
     //Size of the application frame, in pixels
-    static int width = 1006;
+    static int width = 1003;
     static int height = 1029;
 
     //The amount of squares in the field, colum x row
@@ -68,6 +68,7 @@ public class Gameboard extends JFrame {
 
     //Shows the location of the avatar in the run console and restarts the game when the game has been finished
     public void update() {
+        repaint();
         if (9 == avatar.getCol() & 9 == avatar.getRow()) {
             JOptionPane.showMessageDialog(null, "Game finished");
             avatar.resetCol();
@@ -78,17 +79,15 @@ public class Gameboard extends JFrame {
             lastLocation[1] = avatar.getRow();
            // System.out.println(lastLocation[][]);
         }
-        repaint();
     }
 
     public void paint(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
         g2d.clearRect(0, 0, width, height);
         g2d.setColor(Color.RED);
-        g2d.fillRect(avatar.getCol() * 100, avatar.getRow() * 100 + 29, 100, 100);
+        g2d.fillRect(avatar.getCol() * 100, avatar.getRow() * 100 + 26, 100, 100);
         for (int i = 0 ;board.length > i; i++){
             for (int j = 0 ;board[i].length > j; j++) {
-                g2d.setColor(Color.BLACK);
                 if (board[i][j] instanceof Wall) {
                     g2d.setColor(Color.BLUE);
                 }
@@ -106,8 +105,10 @@ public class Gameboard extends JFrame {
                 }
 
                 if (board[i][j] != null) {
-                    g2d.fillRect(i * 100, j * 100 + 29, 100, 100);
+                    g2d.fillRect(i * 100, j * 100 + 26, 100, 100);
                 }
+                g2d.setColor(Color.BLACK);
+                g2d.drawRect(i * 100, j *100 + 26, 100 , 100);
             }
         }
     }
