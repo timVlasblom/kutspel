@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class Avatar extends JComponent implements KeyListener {
+public class temp extends JComponent implements KeyListener {
     //x & y position
     private int xPos;
     private int yPos;
@@ -15,7 +15,7 @@ public class Avatar extends JComponent implements KeyListener {
     int[] lastLocation = new int[2];
 
     //Sets up the avatar class
-    public Avatar(Gameboard gameboard) {
+    public temp(Gameboard gameboard) {
         xPos = 0;
         yPos = 0;
         setFocusable(true);
@@ -88,15 +88,15 @@ public class Avatar extends JComponent implements KeyListener {
     public boolean checkPossible(int x, int y) {
         for (int i = 0; i < gameboard.board.length; i++) {
             for (int j = 0; j < gameboard.board.length; j++) {
-                if (gameboard.board[i][j] == gameboard.board[xPos + x][yPos + y]) {
-//                    if (!(xPos <= 0) && !(xPos >= 9) && !(yPos <= 0) && !(yPos >= 9)) {
-                    if (gameboard.board[i][j] instanceof Wall || gameboard.board[i][j] instanceof Barricade) {
-                        return true;
+                if (!(x <= 0) && !(x >= 9) && !(y <= 0) && !(y >= 9)) {
+                    if (gameboard.board[i][j] == gameboard.board[xPos + x][yPos + y]) {
+                        if (gameboard.board[i][j] instanceof Wall || gameboard.board[i][j] instanceof Barricade) {
+                            return false;
+                        }
                     }
-//                    }
                 }
             }
         }
-        return false;
+        return true;
     }
 }
