@@ -4,8 +4,8 @@ package Objects;
 public class Key extends Square {
     int code;
 
-    public Key(int x, int y) {
-        super(x, y);
+    public Key() {
+        super();
     }
 
     public int getCode() {

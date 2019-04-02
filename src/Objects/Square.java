@@ -9,9 +9,7 @@ public class Square extends JComponent {
     private int yPos;
 
     //Sets square settings
-    public Square(int xPos, int yPos) {
-        this.xPos = xPos;
-        this.yPos = yPos;
+    public Square() {
     }
 
     public int getXpos() {

@@ -5,13 +5,8 @@ import java.awt.*;
 
 public class Barricade extends Square{
         int code;
-        public Barricade(int x, int y){
-                super(x, y);
-        }
-
-        public void paintComponent(Graphics g) {
-                g.setColor(Color.BLUE);
-                g.fillRect(getXpos() * 100, getYpos() * 100, 100, 100);
+        public Barricade(){
+                super();
         }
 
         public int getCode() {
