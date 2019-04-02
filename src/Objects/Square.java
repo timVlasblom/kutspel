@@ -14,11 +14,11 @@ public class Square extends JComponent {
         this.yPos = yPos;
     }
 
-    public int getX() {
+    public int getXpos() {
         return this.xPos;
     }
 
-    public int getY() {
+    public int getYpos() {
         return this.yPos;
     }
 

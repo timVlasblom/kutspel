@@ -64,8 +64,8 @@ public class Gameboard extends JFrame {
         squares.add(new Wall(7, 7));
         squares.add(new Barricade(5, 5));*/
 
-        squares.add(new Wall(3,3));
-        squares.add(new Barricade(6,6));
+        squares.addClass(new Wall(3,3));
+        squares.addClass(new Barricade(6,6));
 
         //squares.add(new Square(4,4));
         //squares.add(new Square(2,2));

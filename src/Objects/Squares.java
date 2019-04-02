@@ -12,12 +12,8 @@ public class Squares extends JPanel {
         squares = new Square[10][10];
         setLayout(new BorderLayout());
 
-        for(int i = 0; i < 10; i++){
-            for(int j = 0; j < 10; j++){
-                squares[i][j] = new Square(i, j);
-                add(squares[i][j]);
-            }
-        }
+        drawPanel();
+
     }
 
     @Override
@@ -25,10 +21,24 @@ public class Squares extends JPanel {
         super.paintComponent(g);
     }
 
+    public void drawPanel(){
+        for(int i = 0; i < 10; i++){
+            for(int j = 0; j < 10; j++){
+                if(squares[i][j] == null){
+                    removeAll();
+                    squares[i][j] = new Square(i, j);
+                }
+                add(squares[i][j]);
+            }
+        }
+
+    }
+
     public void addClass(Square square){
 
-        int x = square.getX();
-        int y = square.getY();
+        int x = square.getXpos();
+        int y = square.getYpos();
         squares[x][y] = square;
+        drawPanel();
     }
 }

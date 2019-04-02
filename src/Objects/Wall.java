@@ -13,7 +13,7 @@ public class Wall extends Square {
         g.setColor(Color.ORANGE);
         System.out.println(getX());
         System.out.println(getY());
-        g.fillRect(getX() * 100, getY() * 100, 100, 100);
+        g.fillRect(getXpos() * 100, getYpos() * 100, 100, 100);
         repaint();
     }
 }

@@ -11,7 +11,7 @@ public class Barricade extends Square{
 
         public void paintComponent(Graphics g) {
                 g.setColor(Color.BLUE);
-                g.fillRect(getX() * 100, getY() * 100, 100, 100);
+                g.fillRect(getXpos() * 100, getYpos() * 100, 100, 100);
         }
 
         public int getCode() {
