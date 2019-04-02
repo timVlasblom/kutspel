@@ -1,18 +1,19 @@
 package Objects;
 
+import javax.swing.*;
 import java.awt.*;
 
 public class Wall extends Square {
 
-        public Wall(Gameboard gameboard, int x, int y){
-                super(gameboard, x, y);
-                //setBackground(Color.black);
-                repaint();
+        public Wall(int x, int y){
+            super(x, y);
         }
 
     public void paintComponent(Graphics g) {
-        g.setColor(Color.BLUE);
-        g.fillRect(getX() * 100, getY() * 100, 100, 100);
+        g.setColor(Color.ORANGE);
+        System.out.println(getX());
+        System.out.println(getY());
+        g.fillRect(getXpos() * 100, getYpos() * 100, 100, 100);
         repaint();
     }
 }

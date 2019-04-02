@@ -2,36 +2,31 @@ package Objects;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
-public class Square extends JLabel {
-    private Gameboard gameboard;
-    private int x;
-    private int y;
+public class Square extends JComponent {
+    private int xPos;
+    private int yPos;
 
     //Sets square settings
-    public Square(Gameboard gameboard, int x, int y) {
-        this.gameboard = gameboard;
-        this.x = x;
-        this.y = y;
+    public Square(int xPos, int yPos) {
+        this.xPos = xPos;
+        this.yPos = yPos;
     }
 
-    public int getX() {
-        return this.x;
+    public int getXpos() {
+        return this.xPos;
     }
 
-    public int getY() {
-        return this.y;
+    public int getYpos() {
+        return this.yPos;
     }
 
-    //Returns gameboard
-    public Gameboard getGameboard() {
-        return this.gameboard;
-    }
 
-    /*public void paintComponent(Graphics g){
-        g.fillRect(0, 0, 50, 50);
-        g.setColor(Color.red);
-        repaint();
+   public void paintComponent(Graphics g){
+       super.paintComponent(g);
+        g.fillRect(xPos*100, yPos*100, 100, 100);
+        g.setColor(Color.darkGray);
     }
 
     /*public void setCordinates(int x, int y){
