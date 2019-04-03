@@ -2,14 +2,14 @@ package Objects;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 import java.util.ArrayList;
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
-import java.awt.geom.Ellipse2D;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.imageio.ImageIO;
+import javax.swing.WindowConstants;
+import java.awt.image.BufferedImage;
+import java.io.File;
 
 public class Gameboard extends JFrame {
 
@@ -64,6 +64,7 @@ public class Gameboard extends JFrame {
         board[4][4] = new Wall();
         board[9][9] = new Exit();
         board[6][6] = new Barricade();
+        board[2][1] = new Key();
     }
 
     //Shows the location of the avatar in the run console and restarts the game when the game has been finished
@@ -84,27 +85,51 @@ public class Gameboard extends JFrame {
     public void paint(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
         g2d.clearRect(0, 0, width, height);
-        g2d.setColor(Color.RED);
-        g2d.fillRect(avatar.getCol() * 100, avatar.getRow() * 100 + 26, 100, 100);
+        try {
+            final BufferedImage image = ImageIO.read(new File("C:\\Users\\TimVl\\Documents\\GitHub\\kutspel\\src\\Images\\avatar.png"));
+            Image BufferedImage = image.getScaledInstance(100,100, Image.SCALE_SMOOTH);
+            g.drawImage(BufferedImage, avatar.getCol() * 100, avatar.getRow() * 100 + 26, null);
+        } catch (IOException e) {
+            System.out.println("KUTIMAGES");
+        }
         for (int i = 0 ;board.length > i; i++){
             for (int j = 0 ;board[i].length > j; j++) {
                 if (board[i][j] instanceof Wall) {
-                    g2d.setColor(Color.BLUE);
+                    try {
+                        final BufferedImage image = ImageIO.read(new File("C:\\Users\\TimVl\\Documents\\GitHub\\kutspel\\src\\Images\\wall.png"));
+                        Image BufferedImage = image.getScaledInstance(100,100, Image.SCALE_SMOOTH);
+                        g.drawImage(BufferedImage, i * 100, j * 100 + 26, null);
+                    } catch (IOException e) {
+                        System.out.println("KUTIMAGES");
+                    }
                 }
 
-                if (board[i][j] instanceof Barricade) {
-                    g2d.setColor(Color.YELLOW);
+                else if (board[i][j] instanceof Barricade) {
+                    try {
+                        final BufferedImage image = ImageIO.read(new File("C:\\Users\\TimVl\\Documents\\GitHub\\kutspel\\src\\Images\\barricade.png"));
+                        Image BufferedImage = image.getScaledInstance(100,100, Image.SCALE_SMOOTH);
+                        g.drawImage(BufferedImage, i * 100, j * 100 + 26, null);
+                    } catch (IOException e) {
+                        System.out.println("KUTIMAGES");
+                    }
                 }
 
-                if (board[i][j] instanceof Exit) {
+                else if (board[i][j] instanceof Exit) {
                     g2d.setColor(Color.GREEN);
+                    g2d.fillRect(i * 100, j * 100 + 26, 100, 100);
                 }
 
-                if (board[i][j] instanceof Key) {
-                    g2d.setColor(Color.PINK);
+                else if (board[i][j] instanceof Key) {
+                    try {
+                        final BufferedImage image = ImageIO.read(new File("C:\\Users\\TimVl\\Documents\\GitHub\\kutspel\\src\\Images\\key.png"));
+                        Image BufferedImage = image.getScaledInstance(100,100, Image.SCALE_SMOOTH);
+                        g.drawImage(BufferedImage, i * 100, j * 100 + 26, null);
+                    } catch (IOException e) {
+                        System.out.println("KUTIMAGES");
+                    }
                 }
 
-                if (board[i][j] != null) {
+                else if (board[i][j] != null) {
                     g2d.fillRect(i * 100, j * 100 + 26, 100, 100);
                 }
                 g2d.setColor(Color.BLACK);
