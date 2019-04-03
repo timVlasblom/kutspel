@@ -16,6 +16,7 @@ public class Gameboard extends JFrame {
     int boardLength;
 
     //Creates new avatar and gameboard, makes a list of all objects, the amount of squares in the field, colum x row
+    Key key = new Key();
     Avatar avatar = new Avatar(this);
     JPanel gameboard = new JPanel();
     Square[][] board = new Square[10][10];
@@ -32,6 +33,7 @@ public class Gameboard extends JFrame {
         setResizable(false);
         setLocationRelativeTo(null);
         setVisible(true);
+
     }
 
     //Creates avatar (first because we don't want to place a wall on his head), then creates all other objects
@@ -46,6 +48,20 @@ public class Gameboard extends JFrame {
         board[2][2] = key100;
 
         board[6][6] = new Barricade(key100);
+    }
+
+    public Key getAvatarKey(){
+        return avatar.getKey();
+    }
+
+    public boolean checkBarricade(int i, int j){
+        Barricade barricade = (Barricade) board[i][j];
+        if(barricade.checkKey()){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     public void paint(Graphics g) {

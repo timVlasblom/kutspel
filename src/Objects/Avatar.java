@@ -23,6 +23,9 @@ public class Avatar extends JComponent implements KeyListener {
         addKeyListener(this);
         this.gameboard = gameboard;
 //        image = Toolkit.getDefaultToolkit().createImage("src/Warlock.png");
+
+        Key test = new Key();
+        this.key = test;
     }
 
     public Image getImage() {
@@ -52,26 +55,41 @@ public class Avatar extends JComponent implements KeyListener {
 
     //Detects if any of the desired keys is pressed and moves the avatar if possible
     public void keyPressed(KeyEvent event) {
+        int x = 0;
+        int y = 0;
+
         if (event.getKeyCode() == KeyEvent.VK_UP || event.getKeyCode() == KeyEvent.VK_W) {
-            if (checkMovable(0, -1)) {
-                moveAvatar(0, -1);
-            }
+            x = 0;
+            y = -1;
+//            if (checkMovable(0, -1)) {
+//                moveAvatar(0, -1);
+//            }
         }
         if (event.getKeyCode() == KeyEvent.VK_DOWN || event.getKeyCode() == KeyEvent.VK_S) {
-            if (checkMovable(0, 1)) {
-                moveAvatar(0, 1);
-            }
+            x = 0;
+            y = 1;
+//            if (checkMovable(0, 1)) {
+//                moveAvatar(0, 1);
+//            }
         }
         if (event.getKeyCode() == KeyEvent.VK_LEFT || event.getKeyCode() == KeyEvent.VK_A) {
-            if (checkMovable(-1, 0)) {
-                moveAvatar(-1, 0);
-            }
+            x = -1;
+            y = 0;
+//            if (checkMovable(-1, 0)) {
+//                moveAvatar(-1, 0);
+//            }
         }
         if (event.getKeyCode() == KeyEvent.VK_RIGHT || event.getKeyCode() == KeyEvent.VK_D) {
-            if (checkMovable(1, 0)) {
-                moveAvatar(1, 0);
-            }
+            x = 1;
+            y = 0;
+//            if (checkMovable(1, 0)) {
+//                moveAvatar(1, 0);
+//            }
         }
+        if(checkMovable(x,y)){
+            checkSquare(x,y);
+        }
+
         gameboard.repaint();
         checkFinish();
     }
@@ -105,17 +123,40 @@ public class Avatar extends JComponent implements KeyListener {
         return false;
     }
 
+    public void checkSquare(int x, int y){
+        boolean noSpecialSquare = false;
+
+        for (int i = 0; i < gameboard.boardLength; i++) {
+            for (int j = 0; j < gameboard.boardLength; j++) {
+                if (gameboard.board[i][j] instanceof Barricade) {
+                    if(gameboard.checkBarricade(i, j)){
+                        moveAvatar(x, y);
+                    }
+                }
+                else{
+                    noSpecialSquare = true;
+                }
+            }
+        }
+
+        if(noSpecialSquare)
+            moveAvatar(x,y);
+    }
+
     public boolean checkPossible(int x, int y) {
 
         for (int i = 0; i < gameboard.boardLength; i++) {
             for (int j = 0; j < gameboard.boardLength; j++) {
                 if (gameboard.board[i][j] == gameboard.board[xPos + x][yPos + y]) {
-                    if (gameboard.board[i][j] instanceof Wall || gameboard.board[i][j] instanceof Barricade) {
+                    if (gameboard.board[i][j] instanceof Wall) {
                         return true;
                     }
+
                 }
             }
         }
         return false;
     }
+
+
 }
