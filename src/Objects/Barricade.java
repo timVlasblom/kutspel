@@ -1,5 +1,7 @@
 package Objects;
 
+import javax.swing.*;
+
 public class Barricade extends Square{
         Key key;
         Gameboard gameboard;
@@ -13,14 +15,13 @@ public class Barricade extends Square{
                 return key;
         }
 
-        public boolean checkKey(){
-                Key avatarkey = gameboard.getAvatarKey();
+        public boolean checkKey(Key avatarkey){
                 if(this.key == avatarkey){
                         System.out.println("Goede sleutel");
                         return true;
                 }
                 else{
-                        System.out.println("Foute sleutel");
+                        JOptionPane.showMessageDialog(null, "Foute sleutel");
                         return false;
                 }
         }

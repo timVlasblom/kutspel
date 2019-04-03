@@ -50,13 +50,9 @@ public class Gameboard extends JFrame {
         board[6][6] = new Barricade(key100);
     }
 
-    public Key getAvatarKey(){
-        return avatar.getKey();
-    }
-
     public boolean checkBarricade(int i, int j){
         Barricade barricade = (Barricade) board[i][j];
-        if(barricade.checkKey()){
+        if(barricade.checkKey(avatar.getKey())){
             return true;
         }
         else{

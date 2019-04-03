@@ -61,33 +61,22 @@ public class Avatar extends JComponent implements KeyListener {
         if (event.getKeyCode() == KeyEvent.VK_UP || event.getKeyCode() == KeyEvent.VK_W) {
             x = 0;
             y = -1;
-//            if (checkMovable(0, -1)) {
-//                moveAvatar(0, -1);
-//            }
         }
         if (event.getKeyCode() == KeyEvent.VK_DOWN || event.getKeyCode() == KeyEvent.VK_S) {
             x = 0;
             y = 1;
-//            if (checkMovable(0, 1)) {
-//                moveAvatar(0, 1);
-//            }
         }
         if (event.getKeyCode() == KeyEvent.VK_LEFT || event.getKeyCode() == KeyEvent.VK_A) {
             x = -1;
             y = 0;
-//            if (checkMovable(-1, 0)) {
-//                moveAvatar(-1, 0);
-//            }
         }
         if (event.getKeyCode() == KeyEvent.VK_RIGHT || event.getKeyCode() == KeyEvent.VK_D) {
             x = 1;
             y = 0;
-//            if (checkMovable(1, 0)) {
-//                moveAvatar(1, 0);
-//            }
         }
+
         if(checkMovable(x,y)){
-            checkSquare(x,y);
+            moveAvatar(x,y);
         }
 
         gameboard.repaint();
@@ -123,26 +112,6 @@ public class Avatar extends JComponent implements KeyListener {
         return false;
     }
 
-    public void checkSquare(int x, int y){
-        boolean noSpecialSquare = false;
-
-        for (int i = 0; i < gameboard.boardLength; i++) {
-            for (int j = 0; j < gameboard.boardLength; j++) {
-                if (gameboard.board[i][j] instanceof Barricade) {
-                    if(gameboard.checkBarricade(i, j)){
-                        moveAvatar(x, y);
-                    }
-                }
-                else{
-                    noSpecialSquare = true;
-                }
-            }
-        }
-
-        if(noSpecialSquare)
-            moveAvatar(x,y);
-    }
-
     public boolean checkPossible(int x, int y) {
 
         for (int i = 0; i < gameboard.boardLength; i++) {
@@ -151,11 +120,28 @@ public class Avatar extends JComponent implements KeyListener {
                     if (gameboard.board[i][j] instanceof Wall) {
                         return true;
                     }
+                    if (gameboard.board[i][j] instanceof Barricade) {
+                        if (!gameboard.checkBarricade(i, j)) {
+                            return true;
+                        }
+                        else{
+                            gameboard.board[i][j] = null;
+                        }
+                    }
+                    if (gameboard.board[i][j] instanceof Key) {
+                        Key keySquare = (Key) gameboard.board[i][j];
+                        swapKeys(keySquare);
+                        gameboard.board[i][j] = null;
+                    }
 
                 }
             }
         }
         return false;
+    }
+
+    public void swapKeys(Key keySquare){
+        this.key = keySquare;
     }
 
 
