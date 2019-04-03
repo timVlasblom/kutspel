@@ -1,19 +1,13 @@
 package Objects;
 
-
-import java.awt.*;
-
 public class Barricade extends Square{
-        int code;
-        public Barricade(){
+        Key key;
+        public Barricade(Key key){
                 super();
+                this.key = key;
         }
 
-        public int getCode() {
-                return code;
-        }
-
-        public void setCode(int code) {
-                this.code = code;
+        public Key getCode() {
+                return key;
         }
 }
