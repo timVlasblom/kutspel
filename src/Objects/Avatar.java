@@ -1,7 +1,6 @@
 package Objects;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -13,8 +12,6 @@ public class Avatar extends JComponent implements KeyListener {
     private Gameboard gameboard;
     private Key key;
 
-    protected Image image;
-
     //Sets up the avatar class
     public Avatar(Gameboard gameboard) {
         xPos = 0;
@@ -22,14 +19,9 @@ public class Avatar extends JComponent implements KeyListener {
         setFocusable(true);
         addKeyListener(this);
         this.gameboard = gameboard;
-//        image = Toolkit.getDefaultToolkit().createImage("src/Warlock.png");
 
         Key test = new Key();
         this.key = test;
-    }
-
-    public Image getImage() {
-        return image;
     }
 
     public Key getKey(){
@@ -79,7 +71,6 @@ public class Avatar extends JComponent implements KeyListener {
             moveAvatar(x,y);
         }
 
-        gameboard.repaint();
         checkFinish();
     }
 
@@ -93,6 +84,7 @@ public class Avatar extends JComponent implements KeyListener {
     public void moveAvatar(int x, int y) {
         xPos += x;
         yPos += y;
+        gameboard.repaint();
     }
 
     //Shows the location of the avatar in the run console and restarts the game when the game has been finished
