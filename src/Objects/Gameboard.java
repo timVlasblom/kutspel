@@ -23,7 +23,7 @@ public class Gameboard extends JFrame {
 
     //Sets up the game; Create frame with its attributes, draws level, adds gameboard, sets exit on close of program, sets size of frame, sets not resizable, sets location in middle, sets visible
     public void setup() {
-        boardLength = board.length;
+        boardLength = board.length - 1;
         startLevel();
         add(gameboard);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);

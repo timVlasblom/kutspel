@@ -1,6 +1,7 @@
 package Objects;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -11,6 +12,8 @@ public class Avatar extends JComponent implements KeyListener {
 
     private Gameboard gameboard;
 
+    protected Image image;
+
     //Sets up the avatar class
     public Avatar(Gameboard gameboard) {
         xPos = 0;
@@ -18,6 +21,11 @@ public class Avatar extends JComponent implements KeyListener {
         setFocusable(true);
         addKeyListener(this);
         this.gameboard = gameboard;
+//        image = Toolkit.getDefaultToolkit().createImage("src/Warlock.png");
+    }
+
+    public Image getImage() {
+        return image;
     }
 
     //Returns the x position of the avatar
@@ -77,14 +85,14 @@ public class Avatar extends JComponent implements KeyListener {
 
     //Shows the location of the avatar in the run console and restarts the game when the game has been finished
     public void checkFinish() {
-        if (gameboard.boardLength - 1 == getCol() & gameboard.boardLength == getRow()) {
+        if (gameboard.boardLength == getCol() & gameboard.boardLength == getRow()) {
             JOptionPane.showMessageDialog(null, "Game finished");
             resetColRow();
         }
     }
 
     public boolean checkMovable(int x, int y) {
-        if (((xPos + x) >= 0) && ((xPos + x) <= gameboard.boardLength - 1) && ((yPos + y) >= 0) && ((yPos + y) <= gameboard.boardLength - 1)) {
+        if (((xPos + x) >= 0) && ((xPos + x) <= gameboard.boardLength) && ((yPos + y) >= 0) && ((yPos + y) <= gameboard.boardLength)) {
             if (!checkPossible(x, y)) {
                 return true;
             }
