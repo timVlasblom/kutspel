@@ -11,6 +11,7 @@ public class Avatar extends JComponent implements KeyListener {
     private int yPos;
 
     private Gameboard gameboard;
+    private Key key;
 
     protected Image image;
 
@@ -26,6 +27,10 @@ public class Avatar extends JComponent implements KeyListener {
 
     public Image getImage() {
         return image;
+    }
+
+    public Key getKey(){
+        return this.key;
     }
 
     //Returns the x position of the avatar
