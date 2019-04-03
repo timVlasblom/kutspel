@@ -47,7 +47,6 @@ public class Gameboard extends JFrame {
         board[3][3] = new Wall();
         board[4][4] = new Wall();
         board[9][9] = new Exit();
-        board[6][6] = new Barricade();
         board[2][1] = new Key();
         Key key100 = new Key();
         board[2][2] = key100;
@@ -58,13 +57,6 @@ public class Gameboard extends JFrame {
     public void paint(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
         g2d.clearRect(0, 0, width, height);
-        try {
-            final BufferedImage image = ImageIO.read(new File("C:\\Users\\TimVl\\Documents\\GitHub\\kutspel\\src\\Images\\avatar.png"));
-            Image BufferedImage = image.getScaledInstance(100,100, Image.SCALE_SMOOTH);
-            g.drawImage(BufferedImage, avatar.getCol() * 100, avatar.getRow() * 100 + 26, null);
-        } catch (IOException e) {
-            System.out.println("KUTIMAGES");
-        }
         for (int i = 0 ;board.length > i; i++){
             for (int j = 0 ;board[i].length > j; j++) {
                 if (board[i][j] instanceof Wall) {
@@ -108,8 +100,13 @@ public class Gameboard extends JFrame {
                 g2d.setColor(Color.BLACK);
                 g2d.drawRect(i * 100, j * 100 + 26, 100, 100);
             }
+            try {
+                final BufferedImage image = ImageIO.read(new File("C:\\Users\\TimVl\\Documents\\GitHub\\kutspel\\src\\Images\\avatar.png"));
+                Image BufferedImage = image.getScaledInstance(100,100, Image.SCALE_SMOOTH);
+                g.drawImage(BufferedImage, avatar.getCol() * 100, avatar.getRow() * 100 + 26, null);
+            } catch (IOException e) {
+                System.out.println("KUTIMAGES");
+            }
         }
-        g2d.setColor(Color.RED);
-        g2d.fillRect(avatar.getCol() * 100, avatar.getRow() * 100 + 26, 100, 100);
     }
 }
