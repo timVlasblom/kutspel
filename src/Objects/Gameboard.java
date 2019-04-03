@@ -13,16 +13,17 @@ public class Gameboard extends JFrame {
     static int width = 1003;
     static int height = 1029;
 
-    //Size of the last known location array of the avatar
-    int[] lastLocation = new int[2];
+    int boardLength;
 
     //Creates new avatar and gameboard, makes a list of all objects, the amount of squares in the field, colum x row
     Avatar avatar = new Avatar(this);
     JPanel gameboard = new JPanel();
     Square[][] board = new Square[10][10];
 
+
     //Sets up the game; Create frame with its attributes, draws level, adds gameboard, sets exit on close of program, sets size of frame, sets not resizable, sets location in middle, sets visible
     public void setup() {
+        boardLength = board.length - 1;
         startLevel();
         add(gameboard);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -50,8 +51,8 @@ public class Gameboard extends JFrame {
     public void paint(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
         g2d.clearRect(0, 0, width, height);
-        for (int i = 0; board.length > i; i++) {
-            for (int j = 0; board[i].length > j; j++) {
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board.length; j++) {
                 if (board[i][j] instanceof Wall) {
                     g2d.setColor(Color.BLUE);
                 }
