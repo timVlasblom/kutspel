@@ -13,7 +13,8 @@ public class Avatar extends JComponent implements KeyListener {
     private Gameboard gameboard;
     private Key key;
 
-    protected Image image;
+    //Size of the last known location array of the avatar
+    int[] lastLocation = new int[2];
 
     //Sets up the avatar class
     public Avatar(Gameboard gameboard) {
@@ -22,11 +23,6 @@ public class Avatar extends JComponent implements KeyListener {
         setFocusable(true);
         addKeyListener(this);
         this.gameboard = gameboard;
-//        image = Toolkit.getDefaultToolkit().createImage("src/Warlock.png");
-    }
-
-    public Image getImage() {
-        return image;
     }
 
     public Key getKey(){
@@ -72,7 +68,6 @@ public class Avatar extends JComponent implements KeyListener {
                 moveAvatar(1, 0);
             }
         }
-        gameboard.repaint();
         checkFinish();
     }
 
@@ -84,8 +79,11 @@ public class Avatar extends JComponent implements KeyListener {
     }
 
     public void moveAvatar(int x, int y) {
+        lastLocation[0] = getCol();
+        lastLocation[1] = getRow();
         xPos += x;
         yPos += y;
+        gameboard.repaint();
     }
 
     //Shows the location of the avatar in the run console and restarts the game when the game has been finished
