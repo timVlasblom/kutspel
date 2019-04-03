@@ -19,6 +19,8 @@ public class Avatar extends JComponent implements KeyListener {
         setFocusable(true);
         addKeyListener(this);
         this.gameboard = gameboard;
+        Key test = new Key();
+        this.key = test;
     }
 
     public Key getKey(){

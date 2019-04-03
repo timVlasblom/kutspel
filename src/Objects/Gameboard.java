@@ -38,6 +38,8 @@ public class Gameboard extends JFrame {
         setResizable(false);
         setLocationRelativeTo(null);
         setVisible(true);
+        Key test = avatar.getKey();
+        System.out.println(test);
     }
 
     //Creates avatar (first because we don't want to place a wall on his head), then creates all other objects
