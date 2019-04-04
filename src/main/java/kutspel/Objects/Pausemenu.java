@@ -10,7 +10,7 @@ public class Pausemenu extends JFrame {
 
     private Gameboard gameboard;
 
-    public Pausemenu(Gameboard gameboard){
+    public Pausemenu(Gameboard gameboard) {
         this.gameboard = gameboard;
     }
 

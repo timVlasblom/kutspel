@@ -9,12 +9,13 @@ public class Main {
         startmenu.Startmenu();
     }
 
-    public static void startGame(Gameboard gameboard){
+    public static void startGame(Gameboard gameboard) {
         gameboard.setup();
     }
 
     public static void resetBoard(Gameboard gameboard) {
-
+        gameboard.dispose();
+        gameboard = new Gameboard();
         gameboard.setup();
     }
 }

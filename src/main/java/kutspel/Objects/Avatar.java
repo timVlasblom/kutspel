@@ -1,7 +1,5 @@
 package kutspel.Objects;
 
-import kutspel.Main;
-
 import javax.swing.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -45,21 +43,6 @@ public class Avatar extends JComponent implements KeyListener {
     //Returns the y position of the avatar
     public int getRow() {
         return this.yPos;
-    }
-
-    public void resetColRow() {
-        xPos = 0;
-        yPos = 0;
-    }
-
-    //Returns the last known x position of the avatar
-    public int getLocationX() {
-        return this.lastLocation[0];
-    }
-
-    //Returns the last known y position of the avatar
-    public int getLocationY() {
-        return this.lastLocation[1];
     }
 
     //Detects if any of the desired keys is pressed and moves the avatar if possible
