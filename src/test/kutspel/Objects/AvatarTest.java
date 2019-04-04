@@ -50,6 +50,6 @@ public class AvatarTest {
 
     @Test
     public void checkMovable(){
-        assertFalse(avatar.checkMovable(3,3));
+        assertFalse(avatar.checkPossible(3,3));
     }
 }
