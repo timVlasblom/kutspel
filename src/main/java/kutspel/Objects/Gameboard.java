@@ -14,7 +14,7 @@ import java.io.File;
 
 public class Gameboard extends JFrame {
 
-        //Size of the application frame
+    //Size of the application frame
     static int width = 1300;
     static int height = 1029;
 
@@ -116,12 +116,10 @@ public class Gameboard extends JFrame {
         } catch (IOException e) {
             System.out.println("Avatar error");
         }
-
-
         try {
             g2d.setColor(Color.darkGray);
             g2d.fillRect(1100, 129, 100, 100);
-            if(avatar.getKey() != ){
+            if(avatar.getKey() != null){
                 final BufferedImage image = ImageIO.read(new File("src\\main\\resources\\key.png"));
                 Image BufferedImage = image.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
                 g.drawImage(BufferedImage, 1100, 129, null);
