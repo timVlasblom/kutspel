@@ -25,11 +25,10 @@ public class Gameboard extends JFrame {
     static private String wallImg = "src\\main\\resources\\wall.png";
 
 
-    //Creates new avatar, Square array for board (colum x row), new gameboard and reset button
+    //Creates new avatar, Square array for board (colum x row), new gameboard
     private Avatar avatar;
     private Square[][] board;
     private JPanel gameboard;
-    private JButton resetButton;
 
     public Gameboard() {
         this.avatar = new Avatar(this);
@@ -37,7 +36,7 @@ public class Gameboard extends JFrame {
         this.gameboard = new JPanel();
     }
 
-    //Sets up the game; Create frame with its attributes, draws level, adds gameboard and avatar, sets exit on close of program, sets size of frame, sets not resizable, sets location in middle, sets visible, adds reset button
+    //Sets up the game; Create frame with its attributes, draws level, adds gameboard and avatar, sets exit on close of program, sets size of frame, sets not resizable, sets location in middle, sets visible
     public void setup() {
         boardLength = board.length - 1;
         startLevel();
@@ -86,12 +85,6 @@ public class Gameboard extends JFrame {
         board[3][1] = new Barricade(key200);
         board[3][2] = new Barricade(key100);
         board[6][6] = new Barricade(key100);
-
-        resetButton.addActionListener(this);
-        resetButton.setBounds(1105,800, 100, 100);
-        resetButton.setText("Reset");
-        gameboard.add(resetButton);
-
     }
 
     //Checks if the barricade code matches the key code
@@ -149,16 +142,16 @@ public class Gameboard extends JFrame {
                     g2d.setColor(Color.GRAY);
                     g2d.drawRect(i * 100, j * 100 + 26, 100, 100);
                 }
-                g2d.fillRect(avatar.lastLocation[0] * 100, avatar.lastLocation[1] * 100 + 26, 100, 100);
+                g2d.fillRect(avatar.getLocationX() * 100, avatar.getLocationY() * 100 + 26, 100, 100);
 
                 Font font = g.getFont().deriveFont(18.0f);
                 g.setFont(font);
             }
         }else{
             g2d.setColor(Color.LIGHT_GRAY);
-            g2d.fillRect(avatar.lastLocation[0] * 100, avatar.lastLocation[1] * 100 + 26, 100, 100);
+            g2d.fillRect(avatar.getLocationX() * 100, avatar.getLocationY() * 100 + 26, 100, 100);
             g2d.setColor(Color.GRAY);
-            g2d.drawRect(avatar.lastLocation[0] * 100, avatar.lastLocation[1] * 100 + 26, 100, 100);
+            g2d.drawRect(avatar.getLocationX() * 100, avatar.getLocationY() * 100 + 26, 100, 100);
         }
 
         try {
