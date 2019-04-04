@@ -12,6 +12,9 @@ public class Avatar extends JComponent implements KeyListener {
     private Gameboard gameboard;
     private Key key;
 
+    //Size of the last known location array of the avatar
+    int[] lastLocation = new int[2];
+
     //Sets up the avatar class
     public Avatar(Gameboard gameboard) {
         xPos = 0;
@@ -82,6 +85,8 @@ public class Avatar extends JComponent implements KeyListener {
     }
 
     public void moveAvatar(int x, int y) {
+        lastLocation[0] = getCol();
+        lastLocation[1] = getRow();
         xPos += x;
         yPos += y;
         gameboard.repaint();

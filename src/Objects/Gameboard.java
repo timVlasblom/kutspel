@@ -67,45 +67,42 @@ public class Gameboard extends JFrame {
 
     public void paint(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
-        g2d.clearRect(0, 0, width, height);
-        for (int i = 0 ;board.length > i; i++){
-            for (int j = 0 ;board[i].length > j; j++) {
+
+        g2d.fillRect(avatar.lastLocation[0] * 100, avatar.lastLocation[1] * 100 + 26, 100, 100);
+        for (int i = 0; board.length > i; i++) {
+            for (int j = 0; board[i].length > j; j++) {
+
                 if (board[i][j] instanceof Wall) {
                     try {
-                        final BufferedImage image = ImageIO.read(new File("C:\\Users\\TimVl\\Documents\\GitHub\\kutspel\\src\\Images\\wall.png"));
-                        Image BufferedImage = image.getScaledInstance(100,100, Image.SCALE_SMOOTH);
+                        final BufferedImage image = ImageIO.read(new File("src\\Images\\wall.png"));
+                        Image BufferedImage = image.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
                         g.drawImage(BufferedImage, i * 100, j * 100 + 26, null);
                     } catch (IOException e) {
                         System.out.println("KUTIMAGES");
                     }
-                }
-
-                else if (board[i][j] instanceof Barricade) {
+                } else if (board[i][j] instanceof Barricade) {
                     try {
-                        final BufferedImage image = ImageIO.read(new File("C:\\Users\\TimVl\\Documents\\GitHub\\kutspel\\src\\Images\\barricade.png"));
-                        Image BufferedImage = image.getScaledInstance(100,100, Image.SCALE_SMOOTH);
+                        final BufferedImage image = ImageIO.read(new File("src\\Images\\barricade.png"));
+                        Image BufferedImage = image.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
                         g.drawImage(BufferedImage, i * 100, j * 100 + 26, null);
                     } catch (IOException e) {
                         System.out.println("KUTIMAGES");
                     }
-                }
-
-                else if (board[i][j] instanceof Exit) {
+                } else if (board[i][j] instanceof Exit) {
                     g2d.setColor(Color.GREEN);
                     g2d.fillRect(i * 100, j * 100 + 26, 100, 100);
-                }
-
-                else if (board[i][j] instanceof Key) {
+                } else if (board[i][j] instanceof Key) {
                     try {
-                        final BufferedImage image = ImageIO.read(new File("C:\\Users\\TimVl\\Documents\\GitHub\\kutspel\\src\\Images\\key.png"));
-                        Image BufferedImage = image.getScaledInstance(100,100, Image.SCALE_SMOOTH);
+                        final BufferedImage image = ImageIO.read(new File("src\\Images\\key.png"));
+                        Image BufferedImage = image.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
                         g.drawImage(BufferedImage, i * 100, j * 100 + 26, null);
                     } catch (IOException e) {
                         System.out.println("KUTIMAGES");
                     }
-                }
-
-                else if (board[i][j] != null) {
+                } else if (board[i][j] == null) {
+                    g2d.setColor(Color.LIGHT_GRAY);
+                    g2d.fillRect(i * 100, j * 100 + 26, 100, 100);
+                } else if (board[i][j] != null) {
                     g2d.fillRect(i * 100, j * 100 + 26, 100, 100);
                 }
                 g2d.setColor(Color.BLACK);
@@ -118,6 +115,13 @@ public class Gameboard extends JFrame {
             } catch (IOException e) {
                 System.out.println("KUTIMAGES");
             }
+        }
+        try {
+            final BufferedImage image = ImageIO.read(new File("src\\Images\\avatar.png"));
+            Image BufferedImage = image.getScaledInstance(99, 99, Image.SCALE_SMOOTH);
+            g.drawImage(BufferedImage, avatar.getCol() * 100 + 1, avatar.getRow() * 100 + 27, null);
+        } catch (IOException e) {
+            System.out.println("KUTIMAGES");
         }
     }
 }
