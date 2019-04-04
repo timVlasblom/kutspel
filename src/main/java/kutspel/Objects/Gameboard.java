@@ -42,17 +42,11 @@ public class Gameboard extends JFrame implements ActionListener {
         setResizable(false);
         setLocationRelativeTo(null);
         setVisible(true);
-
-
-        resetButton.addActionListener(this);
-        resetButton.setBounds(1105,800, 100, 100);
-        resetButton.setText("Reset");
-        gameboard.add(resetButton);
     }
 
     //Creates avatar (first because we don't want to place a wall on his head), then creates all other objects
     public void startLevel() {
-        gameboard.setLayout(null);
+        gameboard.setLayout(new BorderLayout());
 
         board[3][3] = new Wall();
         board[1][0] = new Wall();
@@ -74,6 +68,12 @@ public class Gameboard extends JFrame implements ActionListener {
         board[3][1] = new Barricade(key200);
         board[3][2] = new Barricade(key100);
         board[6][6] = new Barricade(key100);
+
+        resetButton.addActionListener(this);
+        resetButton.setBounds(1105,800, 100, 100);
+        resetButton.setText("Reset");
+        gameboard.add(resetButton);
+
     }
 
     //Checks if the barricade code matches the key code
@@ -89,6 +89,7 @@ public class Gameboard extends JFrame implements ActionListener {
     //Paints everything on the the board
     public void paint(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
+
         g2d.fillRect(avatar.lastLocation[0] * 100, avatar.lastLocation[1] * 100 + 26, 100, 100);
 
         Font font = g.getFont().deriveFont( 18.0f );
@@ -154,7 +155,7 @@ public class Gameboard extends JFrame implements ActionListener {
         }
         try {
             g2d.setColor(new Color(112,112,112));
-            g2d.fillRect(1000,0,width-1000, height);
+            g2d.fillRect(1000,0,width-1000, 800);
 
             g2d.setColor(Color.darkGray);
             g2d.fillRect(1100, 129, 100, 100);
@@ -170,7 +171,8 @@ public class Gameboard extends JFrame implements ActionListener {
                 g.drawString(keyValue, 1100, 145);
             }
 
-
+            g.setColor(Color.BLACK);
+            g.fillRect(1100, 500, 100, 100);
 
         } catch (IOException e) {
             System.out.println("Display error");
