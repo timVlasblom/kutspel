@@ -7,8 +7,8 @@ public class Key extends Square {
         super();
         this.code = code;
     }
-  
-    public int getCode(){
+
+    public int getCode() {
         return this.code;
     }
 }
