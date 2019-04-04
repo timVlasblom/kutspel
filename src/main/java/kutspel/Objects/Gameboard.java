@@ -13,8 +13,9 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 
 public class Gameboard extends JFrame {
-    //Size of the application frame
-    static int width = 1003;
+
+        //Size of the application frame
+    static int width = 1300;
     static int height = 1029;
 
     //Length of the board
@@ -104,7 +105,7 @@ public class Gameboard extends JFrame {
                 } else if (board[i][j] != null) {
                     g2d.fillRect(i * 100, j * 100 + 26, 100, 100);
                 }
-                g2d.setColor(Color.BLACK);
+                g2d.setColor(Color.GRAY);
                 g2d.drawRect(i * 100, j * 100 + 26, 100, 100);
             }
         }
@@ -115,5 +116,20 @@ public class Gameboard extends JFrame {
         } catch (IOException e) {
             System.out.println("Avatar error");
         }
+
+
+        try {
+            g2d.setColor(Color.darkGray);
+            g2d.fillRect(1100, 129, 100, 100);
+            if(avatar.getKey() != ){
+                final BufferedImage image = ImageIO.read(new File("src\\main\\resources\\key.png"));
+                Image BufferedImage = image.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+                g.drawImage(BufferedImage, 1100, 129, null);
+            }
+        } catch (IOException e) {
+            System.out.println("KUTIMAGES");
+        }
+
+
     }
 }
