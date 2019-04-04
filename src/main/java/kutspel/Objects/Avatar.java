@@ -74,7 +74,7 @@ public class Avatar extends JComponent implements KeyListener {
             x = 1;
             y = 0;
         }
-        if (checkMovable(x, y)) {
+        if (checkPossible(x, y)) {
             moveAvatar(x, y);
         }
         checkFinish();
@@ -85,6 +85,40 @@ public class Avatar extends JComponent implements KeyListener {
     }
 
     public void keyTyped(KeyEvent event) {
+    }
+
+    //Checks if move is possible
+    public boolean checkPossible(int x, int y) {
+        boolean possible = false;
+        boolean moveable = true;
+        if (((xPos + x) >= 0) && ((xPos + x) <= gameboard.boardLength) && ((yPos + y) >= 0) && ((yPos + y) <= gameboard.boardLength)) {
+            possible = true;
+            for (int i = 0; i < gameboard.boardLength; i++) {
+                for (int j = 0; j < gameboard.boardLength; j++) {
+                    if (gameboard.board[i][j] == gameboard.board[xPos + x][yPos + y]) {
+                        if (gameboard.board[i][j] instanceof Wall) {
+                            moveable = false;
+                        }
+                        if (gameboard.board[i][j] instanceof Barricade) {
+                            if (!gameboard.checkBarricade(i, j)) {
+                                moveable = false;
+                            } else {
+                                gameboard.board[i][j] = null;
+                            }
+                        }
+                        if (gameboard.board[i][j] instanceof Key) {
+                            Key keySquare = (Key) gameboard.board[i][j];
+                            swapKeys(keySquare);
+                            gameboard.board[i][j] = null;
+                        }
+                    }
+                }
+            }
+        }
+        if (possible && moveable)
+            return true;
+        else
+            return false;
     }
 
     //Sets the last location of the avatar and then moves the avatar
@@ -104,42 +138,6 @@ public class Avatar extends JComponent implements KeyListener {
             Main.resetBoard(gameboard);
             gameboard.startLevel();
         }
-    }
-
-    //Checks if the avatar won't move out of the frame
-    public boolean checkMovable(int x, int y) {
-        if (((xPos + x) >= 0) && ((xPos + x) <= gameboard.boardLength) && ((yPos + y) >= 0) && ((yPos + y) <= gameboard.boardLength)) {
-            if (!checkPossible(x, y)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    //Checks if move is possible
-    public boolean checkPossible(int x, int y) {
-        for (int i = 0; i < gameboard.boardLength; i++) {
-            for (int j = 0; j < gameboard.boardLength; j++) {
-                if (gameboard.board[i][j] == gameboard.board[xPos + x][yPos + y]) {
-                    if (gameboard.board[i][j] instanceof Wall) {
-                        return true;
-                    }
-                    if (gameboard.board[i][j] instanceof Barricade) {
-                        if (!gameboard.checkBarricade(i, j)) {
-                            return true;
-                        } else {
-                            gameboard.board[i][j] = null;
-                        }
-                    }
-                    if (gameboard.board[i][j] instanceof Key) {
-                        Key keySquare = (Key) gameboard.board[i][j];
-                        swapKeys(keySquare);
-                        gameboard.board[i][j] = null;
-                    }
-                }
-            }
-        }
-        return false;
     }
 
     //Swaps the avatar key

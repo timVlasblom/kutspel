@@ -16,7 +16,7 @@ import java.io.File;
 
 public class Gameboard extends JFrame implements ActionListener {
 
-        //Size of the application frame
+    //Size of the application frame
     static int width = 1300;
     static int height = 1029;
 
@@ -152,14 +152,13 @@ public class Gameboard extends JFrame implements ActionListener {
         } catch (IOException e) {
             System.out.println("Avatar error");
         }
-
-
         try {
             g2d.setColor(new Color(112,112,112));
             g2d.fillRect(1000,0,width-1000, height);
 
             g2d.setColor(Color.darkGray);
             g2d.fillRect(1100, 129, 100, 100);
+
             g.setColor(Color.BLACK);
             g.drawString("Currently holding", 1080, 120);
             if(avatar.getKey().getCode() != 0){
