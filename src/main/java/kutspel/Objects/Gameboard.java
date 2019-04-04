@@ -1,6 +1,8 @@
 package kutspel.Objects;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -10,7 +12,7 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
-public class Gameboard extends JFrame {
+public class Gameboard extends JFrame implements ActionListener{
 
     //Size of the application frame, length of the board
     static private int width = 1300;
@@ -187,5 +189,9 @@ public class Gameboard extends JFrame {
             System.out.println("Display error");
         }
         setup = false;
+    }
+
+    public void actionPerformed(ActionEvent event){
+
     }
 }
