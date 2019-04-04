@@ -1,4 +1,4 @@
-package Objects;
+/*package Objects;
 
 
 import static org.junit.Assert.*;
@@ -31,4 +31,4 @@ public class AvatarTest {
     @Test
     public void checkPossible() {
     }
-}
+}*/

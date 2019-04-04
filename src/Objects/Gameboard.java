@@ -22,7 +22,6 @@ public class Gameboard extends JFrame {
     int boardLength;
 
     //Creates new avatar and gameboard, makes a list of all objects, the amount of squares in the field, colum x row
-    Key key = new Key();
     Avatar avatar = new Avatar(this);
     JPanel gameboard = new JPanel();
     Square[][] board = new Square[10][10];
@@ -93,6 +92,8 @@ public class Gameboard extends JFrame {
                     g2d.fillRect(i * 100, j * 100 + 26, 100, 100);
                 } else if (board[i][j] instanceof Key) {
                     try {
+                        g2d.setColor(Color.LIGHT_GRAY);
+                        g2d.fillRect(i * 100, j * 100 + 26, 100, 100);
                         final BufferedImage image = ImageIO.read(new File("src\\Images\\key.png"));
                         Image BufferedImage = image.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
                         g.drawImage(BufferedImage, i * 100, j * 100 + 26, null);
@@ -109,7 +110,7 @@ public class Gameboard extends JFrame {
                 g2d.drawRect(i * 100, j * 100 + 26, 100, 100);
             }
             try {
-                final BufferedImage image = ImageIO.read(new File("C:\\Users\\TimVl\\Documents\\GitHub\\kutspel\\src\\Images\\avatar.png"));
+                final BufferedImage image = ImageIO.read(new File("src\\Images\\avatar.png"));
                 Image BufferedImage = image.getScaledInstance(99,99, Image.SCALE_SMOOTH);
                 g.drawImage(BufferedImage, avatar.getCol() * 100 + 1, avatar.getRow() * 100 + 27, null);
             } catch (IOException e) {
