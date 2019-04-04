@@ -1,4 +1,4 @@
-package Objects;
+package kutspel.Objects;
 
 import javax.swing.*;
 
@@ -21,7 +21,7 @@ public class Barricade extends Square{
                         return true;
                 }
                 else{
-                        JOptionPane.showMessageDialog(null, "Foute sleutel");
+                        JOptionPane.showMessageDialog(null, "Foutieve sleutel");
                         return false;
                 }
         }

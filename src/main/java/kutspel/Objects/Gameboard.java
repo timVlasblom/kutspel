@@ -1,4 +1,4 @@
-package Objects;
+package kutspel.Objects;
 
 import javax.swing.*;
 import java.awt.*;
@@ -22,7 +22,6 @@ public class Gameboard extends JFrame {
     int boardLength;
 
     //Creates new avatar and gameboard, makes a list of all objects, the amount of squares in the field, colum x row
-    Key key = new Key();
     Avatar avatar = new Avatar(this);
     JPanel gameboard = new JPanel();
     Square[][] board = new Square[10][10];
@@ -33,6 +32,7 @@ public class Gameboard extends JFrame {
         boardLength = board.length - 1;
         startLevel();
         add(gameboard);
+        gameboard.add(avatar);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new Dimension(width, height));
         pack();
@@ -43,8 +43,6 @@ public class Gameboard extends JFrame {
 
     //Creates avatar (first because we don't want to place a wall on his head), then creates all other objects
     public void startLevel() {
-        gameboard.add(avatar);
-
         board[3][3] = new Wall();
         board[4][4] = new Wall();
         board[9][9] = new Exit();
@@ -55,12 +53,11 @@ public class Gameboard extends JFrame {
         board[6][6] = new Barricade(key100);
     }
 
-    public boolean checkBarricade(int i, int j){
+    public boolean checkBarricade(int i, int j) {
         Barricade barricade = (Barricade) board[i][j];
-        if(barricade.checkKey(avatar.getKey())){
+        if (barricade.checkKey(avatar.getKey())) {
             return true;
-        }
-        else{
+        } else {
             return false;
         }
     }
@@ -74,7 +71,7 @@ public class Gameboard extends JFrame {
 
                 if (board[i][j] instanceof Wall) {
                     try {
-                        final BufferedImage image = ImageIO.read(new File("src\\Images\\wall.png"));
+                        final BufferedImage image = ImageIO.read(new File("src\\main\\resources\\wall.png"));
                         Image BufferedImage = image.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
                         g.drawImage(BufferedImage, i * 100, j * 100 + 26, null);
                     } catch (IOException e) {
@@ -82,7 +79,7 @@ public class Gameboard extends JFrame {
                     }
                 } else if (board[i][j] instanceof Barricade) {
                     try {
-                        final BufferedImage image = ImageIO.read(new File("src\\Images\\barricade.png"));
+                        final BufferedImage image = ImageIO.read(new File("src\\main\\resources\\barricade.png"));
                         Image BufferedImage = image.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
                         g.drawImage(BufferedImage, i * 100, j * 100 + 26, null);
                     } catch (IOException e) {
@@ -93,7 +90,9 @@ public class Gameboard extends JFrame {
                     g2d.fillRect(i * 100, j * 100 + 26, 100, 100);
                 } else if (board[i][j] instanceof Key) {
                     try {
-                        final BufferedImage image = ImageIO.read(new File("src\\Images\\key.png"));
+                        g2d.setColor(Color.LIGHT_GRAY);
+                        g2d.fillRect(i * 100, j * 100 + 26, 100, 100);
+                        final BufferedImage image = ImageIO.read(new File("src\\main\\resources\\key.png"));
                         Image BufferedImage = image.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
                         g.drawImage(BufferedImage, i * 100, j * 100 + 26, null);
                     } catch (IOException e) {
@@ -109,15 +108,15 @@ public class Gameboard extends JFrame {
                 g2d.drawRect(i * 100, j * 100 + 26, 100, 100);
             }
             try {
-                final BufferedImage image = ImageIO.read(new File("C:\\Users\\TimVl\\Documents\\GitHub\\kutspel\\src\\Images\\avatar.png"));
-                Image BufferedImage = image.getScaledInstance(99,99, Image.SCALE_SMOOTH);
+                final BufferedImage image = ImageIO.read(new File("src\\main\\resources\\avatar.png"));
+                Image BufferedImage = image.getScaledInstance(99, 99, Image.SCALE_SMOOTH);
                 g.drawImage(BufferedImage, avatar.getCol() * 100 + 1, avatar.getRow() * 100 + 27, null);
             } catch (IOException e) {
                 System.out.println("KUTIMAGES");
             }
         }
         try {
-            final BufferedImage image = ImageIO.read(new File("src\\Images\\avatar.png"));
+            final BufferedImage image = ImageIO.read(new File("src\\main\\resources\\avatar.png"));
             Image BufferedImage = image.getScaledInstance(99, 99, Image.SCALE_SMOOTH);
             g.drawImage(BufferedImage, avatar.getCol() * 100 + 1, avatar.getRow() * 100 + 27, null);
         } catch (IOException e) {
