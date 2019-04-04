@@ -115,12 +115,5 @@ public class Gameboard extends JFrame {
                 System.out.println("KUTIMAGES");
             }
         }
-        try {
-            final BufferedImage image = ImageIO.read(new File("src\\main\\resources\\avatar.png"));
-            Image BufferedImage = image.getScaledInstance(99, 99, Image.SCALE_SMOOTH);
-            g.drawImage(BufferedImage, avatar.getCol() * 100 + 1, avatar.getRow() * 100 + 27, null);
-        } catch (IOException e) {
-            System.out.println("KUTIMAGES");
-        }
     }
 }
