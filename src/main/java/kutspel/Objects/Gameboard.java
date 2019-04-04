@@ -129,7 +129,5 @@ public class Gameboard extends JFrame {
         } catch (IOException e) {
             System.out.println("KUTIMAGES");
         }
-
-
     }
 }
