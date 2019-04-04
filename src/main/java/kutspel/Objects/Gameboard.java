@@ -123,10 +123,13 @@ public class Gameboard extends JFrame {
         try {
             g2d.setColor(Color.darkGray);
             g2d.fillRect(1100, 129, 100, 100);
+
+            g.setColor(Color.BLACK);
+            g.drawString("Currently holding", 1100, 120);
             if(avatar.getKey().getCode() != 0){
                 final BufferedImage image = ImageIO.read(new File("src\\main\\resources\\key.png"));
                 Image BufferedImage = image.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-                g.drawImage(BufferedImage, 1100, 129, null);
+                g.drawImage(BufferedImage, 1105, 129, null);
                 g.setColor(Color.WHITE);
                 String keyValue = avatar.getKey().getCode()+ "";
                 g.drawString(keyValue, 1105, 145);
