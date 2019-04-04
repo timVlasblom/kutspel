@@ -19,14 +19,16 @@ public class Avatar extends JComponent implements KeyListener {
     public Avatar(Gameboard gameboard) {
         xPos = 0;
         yPos = 0;
+
         setFocusable(true);
         addKeyListener(this);
         this.gameboard = gameboard;
 
-        Key test = new Key();
-        this.key = test;
+        Key startKey = new Key();
+        this.key = startKey;
     }
 
+    //Returns the key
     public Key getKey() {
         return this.key;
     }
@@ -69,11 +71,9 @@ public class Avatar extends JComponent implements KeyListener {
             x = 1;
             y = 0;
         }
-
         if (checkMovable(x, y)) {
             moveAvatar(x, y);
         }
-
         checkFinish();
     }
 
@@ -84,6 +84,7 @@ public class Avatar extends JComponent implements KeyListener {
     public void keyTyped(KeyEvent event) {
     }
 
+    //Sets the last location of the avatar and then moves the avatar
     public void moveAvatar(int x, int y) {
         lastLocation[0] = getCol();
         lastLocation[1] = getRow();
@@ -101,6 +102,7 @@ public class Avatar extends JComponent implements KeyListener {
         }
     }
 
+    //Checks if the avatar won't move out of the frame
     public boolean checkMovable(int x, int y) {
         if (((xPos + x) >= 0) && ((xPos + x) <= gameboard.boardLength) && ((yPos + y) >= 0) && ((yPos + y) <= gameboard.boardLength)) {
             if (!checkPossible(x, y)) {
@@ -110,6 +112,7 @@ public class Avatar extends JComponent implements KeyListener {
         return false;
     }
 
+    //Checks if move is possible
     public boolean checkPossible(int x, int y) {
         for (int i = 0; i < gameboard.boardLength; i++) {
             for (int j = 0; j < gameboard.boardLength; j++) {
@@ -135,9 +138,8 @@ public class Avatar extends JComponent implements KeyListener {
         return false;
     }
 
+    //Swaps the avatar key
     public void swapKeys(Key keySquare) {
         this.key = keySquare;
     }
-
-
 }
