@@ -43,12 +43,24 @@ public class Gameboard extends JFrame {
     //Creates avatar (first because we don't want to place a wall on his head), then creates all other objects
     public void startLevel() {
         board[3][3] = new Wall();
+        board[1][0] = new Wall();
+        board[2][0] = new Wall();
+        board[2][2] = new Wall();
+        board[2][3] = new Wall();
+        board[3][4] = new Wall();
         board[4][4] = new Wall();
+        board[5][5] = new Wall();
+        board[1][5] = new Wall();
+        board[2][5] = new Wall();
+        board[3][8] = new Wall();
+        board[0][6] = new Wall();
         board[9][9] = new Exit();
-        board[2][1] = new Key(100);
-        Key key100 = new Key(50);
+        Key key200 = new Key(200);
+        board[2][1] = key200;
+        Key key100 = new Key(100);
         board[2][2] = key100;
-
+        board[3][1] = new Barricade(key200);
+        board[3][2] = new Barricade(key100);
         board[6][6] = new Barricade(key100);
     }
 
@@ -135,7 +147,6 @@ public class Gameboard extends JFrame {
 
             g2d.setColor(Color.darkGray);
             g2d.fillRect(1100, 129, 100, 100);
-
             g.setColor(Color.BLACK);
             g.drawString("Currently holding", 1080, 120);
             if(avatar.getKey().getCode() != 0){
