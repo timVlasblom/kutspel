@@ -11,10 +11,11 @@ import static org.junit.Assert.*;
 public class AvatarTest {
     private Avatar avatar;
     private Robot robot;
+    private Gameboard gameboard;
 
     @Before
     public void setUp() throws Exception {
-        Gameboard gameboard = new Gameboard();
+        this.gameboard = new Gameboard();
         this.avatar = new Avatar(gameboard);
         this.robot = new Robot();
 
@@ -44,7 +45,11 @@ public class AvatarTest {
     public void checkFinish(){
         avatar.moveAvatar(9,9);
         avatar.checkFinish();
-        assertTrue(avatar.getCol() == 0 || avatar.getRow() == 0);
+        assertTrue("Game finished", true);
+    }
 
+    @Test
+    public void checkMovable(){
+        assertFalse(avatar.checkMovable(3,3));
     }
 }

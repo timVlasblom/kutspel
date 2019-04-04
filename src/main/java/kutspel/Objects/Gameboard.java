@@ -43,12 +43,24 @@ public class Gameboard extends JFrame {
     //Creates avatar (first because we don't want to place a wall on his head), then creates all other objects
     public void startLevel() {
         board[3][3] = new Wall();
+        board[1][0] = new Wall();
+        board[2][0] = new Wall();
+        board[2][2] = new Wall();
+        board[2][3] = new Wall();
+        board[3][4] = new Wall();
         board[4][4] = new Wall();
+        board[5][5] = new Wall();
+        board[1][5] = new Wall();
+        board[2][5] = new Wall();
+        board[3][8] = new Wall();
+        board[0][6] = new Wall();
         board[9][9] = new Exit();
-        board[2][1] = new Key();
-        Key key100 = new Key();
+        Key key200 = new Key(200);
+        board[2][1] = key200;
+        Key key100 = new Key(100);
         board[2][2] = key100;
-
+        board[3][1] = new Barricade(key200);
+        board[3][2] = new Barricade(key100);
         board[6][6] = new Barricade(key100);
     }
 
@@ -66,6 +78,10 @@ public class Gameboard extends JFrame {
     public void paint(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
         g2d.fillRect(avatar.lastLocation[0] * 100, avatar.lastLocation[1] * 100 + 26, 100, 100);
+
+        Font font = g.getFont().deriveFont( 18.0f );
+        g.setFont( font );
+
         for (int i = 0; board.length > i; i++) {
             for (int j = 0; board[i].length > j; j++) {
                 if (board[i][j] instanceof Wall) {
@@ -81,6 +97,10 @@ public class Gameboard extends JFrame {
                         final BufferedImage image = ImageIO.read(new File("src\\main\\resources\\barricade.png"));
                         Image BufferedImage = image.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
                         g.drawImage(BufferedImage, i * 100, j * 100 + 26, null);
+                        g.setColor(Color.WHITE);
+                        Barricade barricade = (Barricade) board[i][j];
+                        String keyValue = barricade.getCode() + "";
+                        g.drawString(keyValue, i * 100 + 5, j * 100 + 45);
                     } catch (IOException e) {
                         System.out.println("Barricade error");
                     }
@@ -92,7 +112,10 @@ public class Gameboard extends JFrame {
                         Image BufferedImage = image.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
                         g.drawImage(BufferedImage, i * 100, j * 100 + 26, null);
                         g.setColor(Color.BLACK);
-                        g.drawString("hoi", i * 100 + 5, j * 100 + 41);
+                        Key key = (Key) board[i][j];
+                        String keyValue = key.getCode() + "";
+                        g.drawString(keyValue, i * 100 + 5, j * 100 + 45);
+
                     } catch (IOException e) {
                         System.out.println("Key error");
                     }
@@ -117,12 +140,21 @@ public class Gameboard extends JFrame {
             System.out.println("Avatar error");
         }
         try {
+            g2d.setColor(new Color(112,112,112));
+            g2d.fillRect(1000,0,width-1000, height);
+
             g2d.setColor(Color.darkGray);
             g2d.fillRect(1100, 129, 100, 100);
-            if(avatar.getKey() != null){
+
+            g.setColor(Color.BLACK);
+            g.drawString("Currently holding", 1080, 120);
+            if(avatar.getKey().getCode() != 0){
                 final BufferedImage image = ImageIO.read(new File("src\\main\\resources\\key.png"));
                 Image BufferedImage = image.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-                g.drawImage(BufferedImage, 1100, 129, null);
+                g.drawImage(BufferedImage, 1105, 129, null);
+                g.setColor(Color.WHITE);
+                String keyValue = avatar.getKey().getCode()+ "";
+                g.drawString(keyValue, 1100, 145);
             }
         } catch (IOException e) {
             System.out.println("KUTIMAGES");
