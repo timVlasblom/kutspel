@@ -15,7 +15,7 @@ public class Avatar extends JComponent implements KeyListener {
     private Key key;
 
     //Size of the last known location array of the avatar
-    private int[] lastLocation = new int[2];
+    private int[] lastLocation;
 
     //Sets up the avatar class
     public Avatar(Gameboard gameboard) {
@@ -24,10 +24,12 @@ public class Avatar extends JComponent implements KeyListener {
 
         setFocusable(true);
         addKeyListener(this);
-        this.gameboard = gameboard;
 
         Key startKey = new Key(0);
+
+        this.gameboard = gameboard;
         this.key = startKey;
+        this.lastLocation = new int[2];
     }
 
     //Returns the key
@@ -76,12 +78,16 @@ public class Avatar extends JComponent implements KeyListener {
             x = 1;
             y = 0;
         }
+
+        if (event.getKeyCode() == KeyEvent.VK_ESCAPE) {
+            Startmenu startmenu = new Startmenu();
+            startmenu.Startmenu();
+        }
         if (checkPossible(x, y)) {
             moveAvatar(x, y);
         }
         checkFinish();
     }
-
 
     public void keyReleased(KeyEvent event) {
     }
@@ -136,7 +142,9 @@ public class Avatar extends JComponent implements KeyListener {
     public void checkFinish() {
         if (gameboard.getBoardLength() == getCol() & gameboard.getBoardLength() == getRow()) {
             JOptionPane.showMessageDialog(null, "Game finished");
-            Main.resetBoard(gameboard);
+            gameboard.dispose();
+            Startmenu startmenu = new Startmenu();
+            startmenu.Startmenu();
         }
     }
 

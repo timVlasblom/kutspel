@@ -1,10 +1,6 @@
 package kutspel.Objects;
 
-import kutspel.Main;
-
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -14,12 +10,19 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
-public class Gameboard extends JFrame implements ActionListener {
+public class Gameboard extends JFrame {
 
     //Size of the application frame, length of the board
     static private int width = 1300;
     static private int height = 1029;
     private int boardLength;
+
+    //Static paths of images
+    static private String keyImg = "src\\main\\resources\\key.png";
+    static private String avatarImg = "src\\main\\resources\\avatar.png";
+    static private String barricadeImg = "src\\main\\resources\\barricade.png";
+    static private String wallImg = "src\\main\\resources\\wall.png";
+
 
     //Creates new avatar, Square array for board (colum x row), new gameboard and reset button
     private Avatar avatar;
@@ -31,7 +34,6 @@ public class Gameboard extends JFrame implements ActionListener {
         this.avatar = new Avatar(this);
         this.board = new Square[10][10];
         this.gameboard = new JPanel();
-        this.resetButton = new JButton();
     }
 
     //Sets up the game; Create frame with its attributes, draws level, adds gameboard and avatar, sets exit on close of program, sets size of frame, sets not resizable, sets location in middle, sets visible, adds reset button
@@ -47,11 +49,6 @@ public class Gameboard extends JFrame implements ActionListener {
         setResizable(false);
         setLocationRelativeTo(null);
         setVisible(true);
-
-        resetButton.addActionListener(this);
-        resetButton.setBounds(1105, 800, 100, 100);
-        resetButton.setText("Reset");
-        gameboard.add(resetButton);
     }
 
     //Returns the length of the gameboard
@@ -111,7 +108,7 @@ public class Gameboard extends JFrame implements ActionListener {
             for (int j = 0; board[i].length > j; j++) {
                 if (board[i][j] instanceof Wall) {
                     try {
-                        final BufferedImage image = ImageIO.read(new File("src\\main\\resources\\wall.png"));
+                        final BufferedImage image = ImageIO.read(new File(wallImg));
                         Image BufferedImage = image.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
                         g.drawImage(BufferedImage, i * 100, j * 100 + 26, null);
                     } catch (IOException e) {
@@ -119,7 +116,7 @@ public class Gameboard extends JFrame implements ActionListener {
                     }
                 } else if (board[i][j] instanceof Barricade) {
                     try {
-                        final BufferedImage image = ImageIO.read(new File("src\\main\\resources\\barricade.png"));
+                        final BufferedImage image = ImageIO.read(new File(barricadeImg));
                         Image BufferedImage = image.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
                         g.drawImage(BufferedImage, i * 100, j * 100 + 26, null);
                         g.setColor(Color.WHITE);
@@ -133,7 +130,7 @@ public class Gameboard extends JFrame implements ActionListener {
                     try {
                         g2d.setColor(Color.LIGHT_GRAY);
                         g2d.fillRect(i * 100, j * 100 + 26, 100, 100);
-                        final BufferedImage image = ImageIO.read(new File("src\\main\\resources\\key.png"));
+                        final BufferedImage image = ImageIO.read(new File(keyImg));
                         Image BufferedImage = image.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
                         g.drawImage(BufferedImage, i * 100, j * 100 + 26, null);
                         g.setColor(Color.BLACK);
@@ -157,7 +154,7 @@ public class Gameboard extends JFrame implements ActionListener {
             }
         }
         try {
-            final BufferedImage image = ImageIO.read(new File("src\\main\\resources\\avatar.png"));
+            final BufferedImage image = ImageIO.read(new File(avatarImg));
             Image BufferedImage = image.getScaledInstance(99, 99, Image.SCALE_SMOOTH);
             g.drawImage(BufferedImage, avatar.getCol() * 100 + 1, avatar.getRow() * 100 + 27, null);
         } catch (IOException e) {
@@ -173,7 +170,7 @@ public class Gameboard extends JFrame implements ActionListener {
             g.setColor(Color.BLACK);
             g.drawString("Currently holding", 1080, 120);
             if (avatar.getKey().getCode() != 0) {
-                final BufferedImage image = ImageIO.read(new File("src\\main\\resources\\key.png"));
+                final BufferedImage image = ImageIO.read(new File(keyImg));
                 Image BufferedImage = image.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
                 g.drawImage(BufferedImage, 1105, 129, null);
                 g.setColor(Color.WHITE);
@@ -182,12 +179,6 @@ public class Gameboard extends JFrame implements ActionListener {
             }
         } catch (IOException e) {
             System.out.println("Display error");
-        }
-    }
-
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == resetButton) {
-            Main.resetBoard(this);
         }
     }
 }
