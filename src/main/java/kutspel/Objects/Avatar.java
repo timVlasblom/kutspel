@@ -24,7 +24,8 @@ public class Avatar extends JComponent implements KeyListener {
         addKeyListener(this);
         this.gameboard = gameboard;
 
-        Key startKey = new Key();
+
+        Key startKey = new Key(0);
         this.key = startKey;
     }
 

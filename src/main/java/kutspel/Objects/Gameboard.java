@@ -45,8 +45,8 @@ public class Gameboard extends JFrame {
         board[3][3] = new Wall();
         board[4][4] = new Wall();
         board[9][9] = new Exit();
-        board[2][1] = new Key();
-        Key key100 = new Key();
+        board[2][1] = new Key(100);
+        Key key100 = new Key(50);
         board[2][2] = key100;
 
         board[6][6] = new Barricade(key100);
@@ -92,7 +92,10 @@ public class Gameboard extends JFrame {
                         Image BufferedImage = image.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
                         g.drawImage(BufferedImage, i * 100, j * 100 + 26, null);
                         g.setColor(Color.BLACK);
-                        g.drawString("hoi", i * 100 + 5, j * 100 + 41);
+                        Key key = (Key) board[i][j];
+                        String keyValue = key.getCode() + "";
+                        g.drawString(keyValue, i * 100 + 5, j * 100 + 41);
+
                     } catch (IOException e) {
                         System.out.println("Key error");
                     }
@@ -121,10 +124,16 @@ public class Gameboard extends JFrame {
         try {
             g2d.setColor(Color.darkGray);
             g2d.fillRect(1100, 129, 100, 100);
-            if(avatar.getKey() != ){
+
+            g.setColor(Color.BLACK);
+            g.drawString("Currently holding", 1100, 120);
+            if(avatar.getKey().getCode() != 0){
                 final BufferedImage image = ImageIO.read(new File("src\\main\\resources\\key.png"));
                 Image BufferedImage = image.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-                g.drawImage(BufferedImage, 1100, 129, null);
+                g.drawImage(BufferedImage, 1105, 129, null);
+                g.setColor(Color.WHITE);
+                String keyValue = avatar.getKey().getCode()+ "";
+                g.drawString(keyValue, 1105, 145);
             }
         } catch (IOException e) {
             System.out.println("KUTIMAGES");
