@@ -89,8 +89,8 @@ public class Avatar extends JComponent implements KeyListener {
         boolean moveable = true;
         if (((xPos + x) >= 0) && ((xPos + x) <= gameboard.getBoardLength()) && ((yPos + y) >= 0) && ((yPos + y) <= gameboard.getBoardLength())) {
             possible = true;
-            for (int i = 0; i < gameboard.getBoardLength(); i++) {
-                for (int j = 0; j < gameboard.getBoardLength(); j++) {
+            for (int i = 0; i <= gameboard.getBoardLength(); i++) {
+                for (int j = 0; j <= gameboard.getBoardLength(); j++) {
                     if (gameboard.getBoard()[i][j] == gameboard.getBoard()[xPos + x][yPos + y]) {
                         if (gameboard.getBoard()[i][j] instanceof Wall) {
                             moveable = false;

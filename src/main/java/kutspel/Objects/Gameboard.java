@@ -65,32 +65,70 @@ public class Gameboard extends JFrame {
     public void startLevel() {
         gameboard.setLayout(new BorderLayout());
 
-        board[3][3] = new Wall();
+        board[9][9] = new Exit();
         board[1][0] = new Wall();
         board[2][0] = new Wall();
-        board[2][2] = new Wall();
-        board[2][3] = new Wall();
+        board[1][1] = new Wall();
+        board[5][1] = new Wall();
+        board[6][1] = new Wall();
+        board[8][1] = new Wall();
+        board[1][2] = new Wall();
+        board[3][2] = new Wall();
+        board[7][2] = new Wall();
+        board[3][3] = new Wall();
+        board[5][3] = new Wall();
+        board[6][3] = new Wall();
+        board[7][3] = new Wall();
+        board[9][3] = new Wall();
+        board[0][4] = new Wall();
+        board[1][4] = new Wall();
         board[3][4] = new Wall();
         board[4][4] = new Wall();
-        board[5][5] = new Wall();
         board[1][5] = new Wall();
         board[2][5] = new Wall();
-        board[3][8] = new Wall();
+        board[3][5] = new Wall();
+        board[4][5] = new Wall();
+        board[5][5] = new Wall();
+        board[7][5] = new Wall();
+        board[8][5] = new Wall();
+        board[9][5] = new Wall();
         board[0][6] = new Wall();
-        board[9][9] = new Exit();
-        Key key200 = new Key(200);
-        board[2][1] = key200;
+        board[1][6] = new Wall();
+        board[3][6] = new Wall();
+        board[4][6] = new Wall();
+        board[9][6] = new Wall();
+        board[0][7] = new Wall();
+        board[5][7] = new Wall();
+        board[7][7] = new Wall();
+        board[8][7] = new Wall();
+        board[9][7] = new Wall();
+        board[0][8] = new Wall();
+        board[1][8] = new Wall();
+        board[3][8] = new Wall();
+        board[9][8] = new Wall();
+        board[0][9] = new Wall();
+        board[1][9] = new Wall();
+        board[4][9] = new Wall();
+        board[5][9] = new Wall();
+        board[6][9] = new Wall();
+        board[7][9] = new Wall();
+
         Key key100 = new Key(100);
-        board[2][2] = key100;
-        board[3][1] = new Barricade(key200);
-        board[3][2] = new Barricade(key100);
-        board[6][6] = new Barricade(key100);
+        Key key150 = new Key(150);
+        Key key200 = new Key(200);
+        Key key300 = new Key(300);
 
-        resetButton.addActionListener(this);
-        resetButton.setBounds(1105,800, 100, 100);
-        resetButton.setText("Reset");
-        gameboard.add(resetButton);
+        board[2][4] = key100;
+        board[9][4] = key100;
+        board[6][2] = key150;
+        board[5][4] = key200;
+        board[3][9] = key300;
 
+        board[3][1] = new Barricade(key100);
+        board[6][4] = new Barricade(key100);
+        board[8][2] = new Barricade(key150);
+        board[6][6] = new Barricade(key200);
+        board[8][8] = new Barricade(key300);
     }
 
     //Checks if the barricade code matches the key code
@@ -167,7 +205,6 @@ public class Gameboard extends JFrame {
             System.out.println("Avatar error");
         }
         try {
-
             g2d.setColor(new Color(112, 112, 112));
             g2d.fillRect(1000, 0, width - 1000, height);
 
