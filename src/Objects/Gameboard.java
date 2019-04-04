@@ -22,6 +22,7 @@ public class Gameboard extends JFrame {
     int boardLength;
 
     //Creates new avatar and gameboard, makes a list of all objects, the amount of squares in the field, colum x row
+    Key key = new Key();
     Avatar avatar = new Avatar(this);
     JPanel gameboard = new JPanel();
     Square[][] board = new Square[10][10];
@@ -54,11 +55,23 @@ public class Gameboard extends JFrame {
         board[6][6] = new Barricade(key100);
     }
 
+    public boolean checkBarricade(int i, int j){
+        Barricade barricade = (Barricade) board[i][j];
+        if(barricade.checkKey(avatar.getKey())){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
     public void paint(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
+
         g2d.fillRect(avatar.lastLocation[0] * 100, avatar.lastLocation[1] * 100 + 26, 100, 100);
         for (int i = 0; board.length > i; i++) {
             for (int j = 0; board[i].length > j; j++) {
+
                 if (board[i][j] instanceof Wall) {
                     try {
                         final BufferedImage image = ImageIO.read(new File("src\\Images\\wall.png"));
@@ -94,6 +107,13 @@ public class Gameboard extends JFrame {
                 }
                 g2d.setColor(Color.BLACK);
                 g2d.drawRect(i * 100, j * 100 + 26, 100, 100);
+            }
+            try {
+                final BufferedImage image = ImageIO.read(new File("C:\\Users\\TimVl\\Documents\\GitHub\\kutspel\\src\\Images\\avatar.png"));
+                Image BufferedImage = image.getScaledInstance(99,99, Image.SCALE_SMOOTH);
+                g.drawImage(BufferedImage, avatar.getCol() * 100 + 1, avatar.getRow() * 100 + 27, null);
+            } catch (IOException e) {
+                System.out.println("KUTIMAGES");
             }
         }
         try {
