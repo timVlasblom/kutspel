@@ -7,4 +7,10 @@ public class Main {
         Gameboard gameboard = new Gameboard();
         gameboard.setup();
     }
+
+    public static void resetBoard(Gameboard gameboard){
+        gameboard.dispose();
+        gameboard = new Gameboard();
+        gameboard.setup();
+    }
 }
