@@ -1,5 +1,7 @@
 package kutspel.Objects;
 
+import kutspel.Main;
+
 import javax.swing.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -99,6 +101,7 @@ public class Avatar extends JComponent implements KeyListener {
         if (gameboard.boardLength == getCol() & gameboard.boardLength == getRow()) {
             JOptionPane.showMessageDialog(null, "Game finished");
             resetColRow();
+            Main.resetBoard(gameboard);
             gameboard.startLevel();
         }
     }
