@@ -54,12 +54,11 @@ public class Gameboard extends JFrame {
         board[6][6] = new Barricade(key100);
     }
 
-    public boolean checkBarricade(int i, int j){
+    public boolean checkBarricade(int i, int j) {
         Barricade barricade = (Barricade) board[i][j];
-        if(barricade.checkKey(avatar.getKey())){
+        if (barricade.checkKey(avatar.getKey())) {
             return true;
-        }
-        else{
+        } else {
             return false;
         }
     }
@@ -111,7 +110,7 @@ public class Gameboard extends JFrame {
             }
             try {
                 final BufferedImage image = ImageIO.read(new File("src\\main\\resources\\avatar.png"));
-                Image BufferedImage = image.getScaledInstance(99,99, Image.SCALE_SMOOTH);
+                Image BufferedImage = image.getScaledInstance(99, 99, Image.SCALE_SMOOTH);
                 g.drawImage(BufferedImage, avatar.getCol() * 100 + 1, avatar.getRow() * 100 + 27, null);
             } catch (IOException e) {
                 System.out.println("KUTIMAGES");
