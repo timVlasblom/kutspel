@@ -22,34 +22,27 @@ public class AvatarTest {
     }
 
     @Test
-    public void resetTest() {
-        avatar.moveAvatar(4,4);
-        avatar.resetColRow();
-        assertTrue(avatar.getCol() == 0 || avatar.getRow() == 0);
-    }
-
-    @Test
     public void moveAvatar() {
-        avatar.moveAvatar(4,4);
+        avatar.moveAvatar(4, 4);
         assertTrue(avatar.getCol() == 4 || avatar.getRow() == 4);
     }
 
     @Test
     public void keyPressed() {
-        avatar.moveAvatar(4,4);
+        avatar.moveAvatar(4, 4);
         robot.keyPress(KeyEvent.VK_DOWN);
         assertTrue(avatar.getCol() == 4 || avatar.getRow() == 5);
     }
 
     @Test
-    public void checkFinish(){
-        avatar.moveAvatar(9,9);
+    public void checkFinish() {
+        avatar.moveAvatar(9, 9);
         avatar.checkFinish();
         assertTrue("Game finished", true);
     }
 
     @Test
-    public void checkMovable(){
-        assertFalse(avatar.checkPossible(3,3));
+    public void checkMovable() {
+        assertFalse(avatar.checkPossible(3, 3));
     }
 }
