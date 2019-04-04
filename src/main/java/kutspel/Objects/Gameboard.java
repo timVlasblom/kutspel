@@ -1,18 +1,20 @@
 package kutspel.Objects;
 
+import kutspel.Main;
+
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.imageio.ImageIO;
-import javax.swing.WindowConstants;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
-public class Gameboard extends JFrame {
+public class Gameboard extends JFrame implements ActionListener {
 
         //Size of the application frame
     static int width = 1300;
@@ -25,6 +27,8 @@ public class Gameboard extends JFrame {
     Avatar avatar = new Avatar(this);
     JPanel gameboard = new JPanel();
     Square[][] board = new Square[10][10];
+    JButton resetButton = new JButton();
+    //Clicklistener click = new Clicklistener();
 
     //Sets up the game; Create frame with its attributes, draws level, adds gameboard, sets exit on close of program, sets size of frame, sets not resizable, sets location in middle, sets visible
     public void setup() {
@@ -38,10 +42,18 @@ public class Gameboard extends JFrame {
         setResizable(false);
         setLocationRelativeTo(null);
         setVisible(true);
+
+
+        resetButton.addActionListener(this);
+        resetButton.setBounds(1105,800, 100, 100);
+        resetButton.setText("Reset");
+        gameboard.add(resetButton);
     }
 
     //Creates avatar (first because we don't want to place a wall on his head), then creates all other objects
     public void startLevel() {
+        gameboard.setLayout(null);
+
         board[3][3] = new Wall();
         board[4][4] = new Wall();
         board[9][9] = new Exit();
@@ -69,6 +81,7 @@ public class Gameboard extends JFrame {
 
         Font font = g.getFont().deriveFont( 18.0f );
         g.setFont( font );
+
 
         for (int i = 0; board.length > i; i++) {
             for (int j = 0; board[i].length > j; j++) {
@@ -146,8 +159,19 @@ public class Gameboard extends JFrame {
                 String keyValue = avatar.getKey().getCode()+ "";
                 g.drawString(keyValue, 1100, 145);
             }
+
+
+
         } catch (IOException e) {
-            System.out.println("KUTIMAGES");
+            System.out.println("Display error");
+        }
+    }
+
+    public void actionPerformed(ActionEvent e)
+    {
+        if (e.getSource() == resetButton)
+        {
+            Main.resetBoard(this);
         }
     }
 }
