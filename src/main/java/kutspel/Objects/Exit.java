@@ -1,4 +1,4 @@
-package Objects;
+package kutspel.Objects;
 
 public class Exit extends Square {
 

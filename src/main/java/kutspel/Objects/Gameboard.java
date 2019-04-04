@@ -1,4 +1,4 @@
-package Objects;
+package kutspel.Objects;
 
 import javax.swing.*;
 import java.awt.*;
@@ -73,7 +73,7 @@ public class Gameboard extends JFrame {
 
                 if (board[i][j] instanceof Wall) {
                     try {
-                        final BufferedImage image = ImageIO.read(new File("src\\Images\\wall.png"));
+                        final BufferedImage image = ImageIO.read(new File("src\\main\\resources\\wall.png"));
                         Image BufferedImage = image.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
                         g.drawImage(BufferedImage, i * 100, j * 100 + 26, null);
                     } catch (IOException e) {
@@ -81,7 +81,7 @@ public class Gameboard extends JFrame {
                     }
                 } else if (board[i][j] instanceof Barricade) {
                     try {
-                        final BufferedImage image = ImageIO.read(new File("src\\Images\\barricade.png"));
+                        final BufferedImage image = ImageIO.read(new File("src\\main\\resources\\barricade.png"));
                         Image BufferedImage = image.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
                         g.drawImage(BufferedImage, i * 100, j * 100 + 26, null);
                     } catch (IOException e) {
@@ -94,7 +94,7 @@ public class Gameboard extends JFrame {
                     try {
                         g2d.setColor(Color.LIGHT_GRAY);
                         g2d.fillRect(i * 100, j * 100 + 26, 100, 100);
-                        final BufferedImage image = ImageIO.read(new File("src\\Images\\key.png"));
+                        final BufferedImage image = ImageIO.read(new File("src\\main\\resources\\key.png"));
                         Image BufferedImage = image.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
                         g.drawImage(BufferedImage, i * 100, j * 100 + 26, null);
                     } catch (IOException e) {
@@ -110,7 +110,7 @@ public class Gameboard extends JFrame {
                 g2d.drawRect(i * 100, j * 100 + 26, 100, 100);
             }
             try {
-                final BufferedImage image = ImageIO.read(new File("src\\Images\\avatar.png"));
+                final BufferedImage image = ImageIO.read(new File("src\\main\\resources\\avatar.png"));
                 Image BufferedImage = image.getScaledInstance(99,99, Image.SCALE_SMOOTH);
                 g.drawImage(BufferedImage, avatar.getCol() * 100 + 1, avatar.getRow() * 100 + 27, null);
             } catch (IOException e) {
@@ -118,7 +118,7 @@ public class Gameboard extends JFrame {
             }
         }
         try {
-            final BufferedImage image = ImageIO.read(new File("src\\Images\\avatar.png"));
+            final BufferedImage image = ImageIO.read(new File("src\\main\\resources\\avatar.png"));
             Image BufferedImage = image.getScaledInstance(99, 99, Image.SCALE_SMOOTH);
             g.drawImage(BufferedImage, avatar.getCol() * 100 + 1, avatar.getRow() * 100 + 27, null);
         } catch (IOException e) {
