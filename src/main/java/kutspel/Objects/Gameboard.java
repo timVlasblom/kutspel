@@ -15,8 +15,9 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 
 public class Gameboard extends JFrame {
-    //Size of the application frame
-    static int width = 1003;
+
+        //Size of the application frame
+    static int width = 1300;
     static int height = 1029;
 
     int boardLength;
@@ -107,13 +108,6 @@ public class Gameboard extends JFrame {
                 g2d.setColor(Color.GRAY);
                 g2d.drawRect(i * 100, j * 100 + 26, 100, 100);
             }
-            try {
-                final BufferedImage image = ImageIO.read(new File("src\\main\\resources\\avatar.png"));
-                Image BufferedImage = image.getScaledInstance(99, 99, Image.SCALE_SMOOTH);
-                g.drawImage(BufferedImage, avatar.getCol() * 100 + 1, avatar.getRow() * 100 + 27, null);
-            } catch (IOException e) {
-                System.out.println("KUTIMAGES");
-            }
         }
         try {
             final BufferedImage image = ImageIO.read(new File("src\\main\\resources\\avatar.png"));
@@ -122,5 +116,20 @@ public class Gameboard extends JFrame {
         } catch (IOException e) {
             System.out.println("KUTIMAGES");
         }
+
+
+        try {
+            g2d.setColor(Color.darkGray);
+            g2d.fillRect(1100, 129, 100, 100);
+            if(avatar.getKey() != ){
+                final BufferedImage image = ImageIO.read(new File("src\\main\\resources\\key.png"));
+                Image BufferedImage = image.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+                g.drawImage(BufferedImage, 1100, 129, null);
+            }
+        } catch (IOException e) {
+            System.out.println("KUTIMAGES");
+        }
+
+
     }
 }
