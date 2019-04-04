@@ -95,6 +95,7 @@ public class Gameboard extends JFrame {
                         Key key = (Key) board[i][j];
                         String keyValue = key.getCode() + "";
                         g.drawString(keyValue, i * 100 + 5, j * 100 + 41);
+
                     } catch (IOException e) {
                         System.out.println("Key error");
                     }
@@ -137,7 +138,5 @@ public class Gameboard extends JFrame {
         } catch (IOException e) {
             System.out.println("KUTIMAGES");
         }
-
-
     }
 }
