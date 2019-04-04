@@ -27,7 +27,7 @@ public class Avatar extends JComponent implements KeyListener {
         this.key = test;
     }
 
-    public Key getKey(){
+    public Key getKey() {
         return this.key;
     }
 
@@ -70,8 +70,8 @@ public class Avatar extends JComponent implements KeyListener {
             y = 0;
         }
 
-        if(checkMovable(x,y)){
-            moveAvatar(x,y);
+        if (checkMovable(x, y)) {
+            moveAvatar(x, y);
         }
 
         checkFinish();
@@ -97,6 +97,7 @@ public class Avatar extends JComponent implements KeyListener {
         if (gameboard.boardLength == getCol() & gameboard.boardLength == getRow()) {
             JOptionPane.showMessageDialog(null, "Game finished");
             resetColRow();
+            gameboard.startLevel();
         }
     }
 
@@ -110,7 +111,6 @@ public class Avatar extends JComponent implements KeyListener {
     }
 
     public boolean checkPossible(int x, int y) {
-
         for (int i = 0; i < gameboard.boardLength; i++) {
             for (int j = 0; j < gameboard.boardLength; j++) {
                 if (gameboard.board[i][j] == gameboard.board[xPos + x][yPos + y]) {
@@ -120,8 +120,7 @@ public class Avatar extends JComponent implements KeyListener {
                     if (gameboard.board[i][j] instanceof Barricade) {
                         if (!gameboard.checkBarricade(i, j)) {
                             return true;
-                        }
-                        else{
+                        } else {
                             gameboard.board[i][j] = null;
                         }
                     }
@@ -130,14 +129,13 @@ public class Avatar extends JComponent implements KeyListener {
                         swapKeys(keySquare);
                         gameboard.board[i][j] = null;
                     }
-
                 }
             }
         }
         return false;
     }
 
-    public void swapKeys(Key keySquare){
+    public void swapKeys(Key keySquare) {
         this.key = keySquare;
     }
 

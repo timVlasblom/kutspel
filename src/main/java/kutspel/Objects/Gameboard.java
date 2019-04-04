@@ -32,6 +32,7 @@ public class Gameboard extends JFrame {
         boardLength = board.length - 1;
         startLevel();
         add(gameboard);
+        gameboard.add(avatar);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new Dimension(width, height));
         pack();
@@ -42,8 +43,6 @@ public class Gameboard extends JFrame {
 
     //Creates avatar (first because we don't want to place a wall on his head), then creates all other objects
     public void startLevel() {
-        gameboard.add(avatar);
-
         board[3][3] = new Wall();
         board[4][4] = new Wall();
         board[9][9] = new Exit();
