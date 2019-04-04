@@ -16,14 +16,14 @@ public class BarricadeTest {
     @Before
     public void setUp() throws Exception {
         this.gameboard = new Gameboard();
-        Key key100 = new Key();
+        Key key100 = new Key(100);
         this.key = key100;
-        this.key2 = new Key();
+        this.key2 = new Key(50);
         this.barricade = new Barricade(key100);
     }
 
     @Test
-    public void checkKey(){
+    public void checkKey() {
         assertTrue(barricade.checkKey(key));
         assertFalse(barricade.checkKey(key2));
     }

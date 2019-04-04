@@ -8,7 +8,7 @@ public class Main {
         gameboard.setup();
     }
 
-    public static void resetBoard(Gameboard gameboard){
+    public static void resetBoard(Gameboard gameboard) {
         gameboard.dispose();
         gameboard = new Gameboard();
         gameboard.setup();
