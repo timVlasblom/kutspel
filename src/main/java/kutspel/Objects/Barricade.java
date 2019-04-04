@@ -10,8 +10,8 @@ public class Barricade extends Square {
         this.key = key;
     }
 
-    public Key getCode() {
-        return key;
+    public int getCode() {
+        return key.getCode();
     }
 
     public boolean checkKey(Key avatarkey) {

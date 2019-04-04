@@ -1,4 +1,4 @@
-package kutspel.Objects;
+/*package kutspel.Objects;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -47,4 +47,4 @@ public class AvatarTest {
         assertTrue(avatar.getCol() == 0 || avatar.getRow() == 0);
 
     }
-}
+}*/
