@@ -105,7 +105,7 @@ public class Gameboard extends JFrame {
                 } else if (board[i][j] != null) {
                     g2d.fillRect(i * 100, j * 100 + 26, 100, 100);
                 }
-                g2d.setColor(Color.BLACK);
+                g2d.setColor(Color.GRAY);
                 g2d.drawRect(i * 100, j * 100 + 26, 100, 100);
             }
             try {
