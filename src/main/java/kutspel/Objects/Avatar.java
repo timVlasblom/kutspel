@@ -29,6 +29,16 @@ public class Avatar extends JComponent implements KeyListener {
         this.lastLocation = new int[2];
     }
 
+    //Returns the last known x position of the avatar
+    public int getLocationX(){
+        return lastLocation[0];
+    }
+
+    //Returns the last known y position of the avatar
+    public int getLocationY(){
+        return lastLocation[1];
+    }
+
     //Returns the key
     public Key getKey() {
         return this.key;

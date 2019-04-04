@@ -1,6 +1,8 @@
 package kutspel.Objects;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -11,6 +13,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 
 public class Gameboard extends JFrame {
+
     //Size of the application frame, length of the board array
     static private int width = 1300;
     static private int height = 1029;
@@ -27,6 +30,8 @@ public class Gameboard extends JFrame {
     private JPanel gameboard;
     private Square[][] board;
 
+    private boolean setup = true;
+
     //Sets up the gameboard class
     public Gameboard() {
         this.avatar = new Avatar(this);
@@ -34,7 +39,7 @@ public class Gameboard extends JFrame {
         this.gameboard = new JPanel();
     }
 
-    //Sets up the game; Create frame with its attributes, draws level, adds gameboard and avatar to gameboard, sets exit on close of program, sets size of frame, sets not resizable, sets location in middle, sets visible, adds reset button
+    //Sets up the game; Create frame with its attributes, draws level, adds gameboard and avatar to gameboard, sets exit on close of program, sets size of frame, sets not resizable, sets location in middle, sets visible, sets setup true
     public void setup() {
         boardLength = board.length - 1;
         startLevel();
@@ -47,6 +52,8 @@ public class Gameboard extends JFrame {
         setResizable(false);
         setLocationRelativeTo(null);
         setVisible(true);
+        setup = true;
+
     }
 
     //Returns the length of the gameboard
@@ -143,63 +150,76 @@ public class Gameboard extends JFrame {
         Font font = g.getFont().deriveFont(18.0f);
         g.setFont(font);
 
-        for (int i = 0; board.length > i; i++) {
-            for (int j = 0; board[i].length > j; j++) {
-                if (board[i][j] instanceof Wall) {
-                    try {
-                        final BufferedImage image = ImageIO.read(new File(wallImg));
-                        Image BufferedImage = image.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-                        g.drawImage(BufferedImage, i * 100, j * 100 + 26, null);
-                    } catch (IOException e) {
-                        System.out.println("Wall error");
-                    }
-                } else if (board[i][j] instanceof Barricade) {
-                    try {
-                        final BufferedImage image = ImageIO.read(new File(barricadeImg));
-                        Image BufferedImage = image.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-                        g.drawImage(BufferedImage, i * 100, j * 100 + 26, null);
-                        g.setColor(Color.WHITE);
-                        Barricade barricade = (Barricade) board[i][j];
-                        String keyValue = barricade.getCode() + "";
-                        g.drawString(keyValue, i * 100 + 5, j * 100 + 45);
-                    } catch (IOException e) {
-                        System.out.println("Barricade error");
-                    }
-                } else if (board[i][j] instanceof Key) {
-                    try {
+        if (setup) {
+            for (int i = 0; board.length > i; i++) {
+                for (int j = 0; board[i].length > j; j++) {
+                    if (board[i][j] instanceof Wall) {
+                        try {
+                            final BufferedImage image = ImageIO.read(new File(wallImg));
+                            Image BufferedImage = image.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+                            g.drawImage(BufferedImage, i * 100, j * 100 + 26, null);
+                        } catch (IOException e) {
+                            System.out.println("Wall error");
+                        }
+                    } else if (board[i][j] instanceof Barricade) {
+                        try {
+                            final BufferedImage image = ImageIO.read(new File(barricadeImg));
+                            Image BufferedImage = image.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+                            g.drawImage(BufferedImage, i * 100, j * 100 + 26, null);
+                            g.setColor(Color.WHITE);
+                            Barricade barricade = (Barricade) board[i][j];
+                            String keyValue = barricade.getCode() + "";
+                            g.drawString(keyValue, i * 100 + 5, j * 100 + 45);
+                        } catch (IOException e) {
+                            System.out.println("Barricade error");
+                        }
+                    } else if (board[i][j] instanceof Key) {
+                        try {
+                            g2d.setColor(Color.LIGHT_GRAY);
+                            g2d.fillRect(i * 100, j * 100 + 26, 100, 100);
+                            final BufferedImage image = ImageIO.read(new File(keyImg));
+                            Image BufferedImage = image.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+                            g.drawImage(BufferedImage, i * 100, j * 100 + 26, null);
+                            g.setColor(Color.BLACK);
+                            Key key = (Key) board[i][j];
+                            String keyValue = key.getCode() + "";
+                            g.drawString(keyValue, i * 100 + 5, j * 100 + 45);
+                        } catch (IOException e) {
+                            System.out.println("Key error");
+                        }
+                    } else if (board[i][j] instanceof Exit) {
+                        g2d.setColor(Color.GREEN);
+                        g2d.fillRect(i * 100, j * 100 + 26, 100, 100);
+                    } else if (board[i][j] == null) {
                         g2d.setColor(Color.LIGHT_GRAY);
                         g2d.fillRect(i * 100, j * 100 + 26, 100, 100);
-                        final BufferedImage image = ImageIO.read(new File(keyImg));
-                        Image BufferedImage = image.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-                        g.drawImage(BufferedImage, i * 100, j * 100 + 26, null);
-                        g.setColor(Color.BLACK);
-                        Key key = (Key) board[i][j];
-                        String keyValue = key.getCode() + "";
-                        g.drawString(keyValue, i * 100 + 5, j * 100 + 45);
-                    } catch (IOException e) {
-                        System.out.println("Key error");
+                    } else if (board[i][j] != null) {
+                        g2d.fillRect(i * 100, j * 100 + 26, 100, 100);
                     }
-                } else if (board[i][j] instanceof Exit) {
-                    g2d.setColor(Color.GREEN);
-                    g2d.fillRect(i * 100, j * 100 + 26, 100, 100);
-                } else if (board[i][j] == null) {
-                    g2d.setColor(Color.LIGHT_GRAY);
-                    g2d.fillRect(i * 100, j * 100 + 26, 100, 100);
-                } else if (board[i][j] != null) {
-                    g2d.fillRect(i * 100, j * 100 + 26, 100, 100);
+                    g2d.setColor(Color.GRAY);
+                    g2d.drawRect(i * 100, j * 100 + 26, 100, 100);
                 }
-                g2d.setColor(Color.GRAY);
-                g2d.drawRect(i * 100, j * 100 + 26, 100, 100);
+                g2d.fillRect(avatar.getLocationX() * 100, avatar.getLocationY() * 100 + 26, 100, 100);
             }
+        } else {
+            g2d.setColor(Color.LIGHT_GRAY);
+            g2d.fillRect(avatar.getLocationX() * 100, avatar.getLocationY() * 100 + 26, 100, 100);
+            g2d.setColor(Color.GRAY);
+            g2d.drawRect(avatar.getLocationX() * 100, avatar.getLocationY() * 100 + 26, 100, 100);
         }
         try {
+            g2d.setColor(Color.LIGHT_GRAY);
+            g2d.fillRect(avatar.getCol() * 100, avatar.getRow() * 100 + 26, 100, 100);
             final BufferedImage image = ImageIO.read(new File(avatarImg));
             Image BufferedImage = image.getScaledInstance(99, 99, Image.SCALE_SMOOTH);
             g.drawImage(BufferedImage, avatar.getCol() * 100 + 1, avatar.getRow() * 100 + 27, null);
+            g2d.setColor(Color.GRAY);
+            g2d.drawRect(avatar.getCol() * 100, avatar.getRow() * 100 + 26, 100, 100);
         } catch (IOException e) {
             System.out.println("Avatar error");
         }
         try {
+
             g2d.setColor(new Color(112, 112, 112));
             g2d.fillRect(1000, 0, width - 1000, height);
 
@@ -219,5 +239,6 @@ public class Gameboard extends JFrame {
         } catch (IOException e) {
             System.out.println("Display error");
         }
+        setup = false;
     }
 }
