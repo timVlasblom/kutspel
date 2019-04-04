@@ -63,7 +63,7 @@ public class Gameboard extends JFrame {
 
     //Creates avatar (first because we don't want to place a wall on his head), then creates all other objects
     public void startLevel() {
-        gameboard.setLayout(null);
+        gameboard.setLayout(new BorderLayout());
 
         board[3][3] = new Wall();
         board[1][0] = new Wall();
@@ -85,6 +85,12 @@ public class Gameboard extends JFrame {
         board[3][1] = new Barricade(key200);
         board[3][2] = new Barricade(key100);
         board[6][6] = new Barricade(key100);
+
+        resetButton.addActionListener(this);
+        resetButton.setBounds(1105,800, 100, 100);
+        resetButton.setText("Reset");
+        gameboard.add(resetButton);
+
     }
 
     //Checks if the barricade code matches the key code
@@ -161,6 +167,7 @@ public class Gameboard extends JFrame {
             System.out.println("Avatar error");
         }
         try {
+
             g2d.setColor(new Color(112, 112, 112));
             g2d.fillRect(1000, 0, width - 1000, height);
 
