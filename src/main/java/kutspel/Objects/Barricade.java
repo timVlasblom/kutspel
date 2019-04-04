@@ -10,17 +10,22 @@ public class Barricade extends Square {
         this.key = key;
     }
 
-    public Key getCode() {
-        return key;
+    public int getCode() {
+        return key.getCode();
     }
 
     public boolean checkKey(Key avatarkey) {
         if (this.key == avatarkey) {
             System.out.println("Goede sleutel");
             return true;
-        } else {
-            JOptionPane.showMessageDialog(null, "Foutieve sleutel");
+        }
+        else if (avatarkey.getCode() == 0){
+            JOptionPane.showMessageDialog(null, "Geen sleutel");
             return false;
+        }
+        else{
+                JOptionPane.showMessageDialog(null, "Foutieve sleutel");
+                return false;
         }
     }
 }

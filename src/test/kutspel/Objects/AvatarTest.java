@@ -52,5 +52,4 @@ public class AvatarTest {
     public void checkMovable(){
         assertFalse(avatar.checkMovable(3,3));
     }
-
 }
