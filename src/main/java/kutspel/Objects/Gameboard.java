@@ -5,34 +5,45 @@ import java.io.IOException;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.imageio.ImageIO;
-import javax.swing.WindowConstants;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
 public class Gameboard extends JFrame {
 
-        //Size of the application frame
-    static int width = 1300;
-    static int height = 1029;
+    //Size of the application frame, length of the board
+    static private int width = 1300;
+    static private int height = 1029;
+    private int boardLength;
 
-    //Length of the board
-    int boardLength;
     boolean setup = true;
+    //Static paths of images
+    static private String keyImg = "src\\main\\resources\\key.png";
+    static private String avatarImg = "src\\main\\resources\\avatar.png";
+    static private String barricadeImg = "src\\main\\resources\\barricade.png";
+    static private String wallImg = "src\\main\\resources\\wall.png";
 
-    //Creates new avatar and gameboard, makes a list of all objects, the amount of squares in the field, colum x row
-    Avatar avatar = new Avatar(this);
-    JPanel gameboard = new JPanel();
-    Square[][] board = new Square[10][10];
 
-    //Sets up the game; Create frame with its attributes, draws level, adds gameboard, sets exit on close of program, sets size of frame, sets not resizable, sets location in middle, sets visible
+    //Creates new avatar, Square array for board (colum x row), new gameboard and reset button
+    private Avatar avatar;
+    private Square[][] board;
+    private JPanel gameboard;
+    private JButton resetButton;
+
+    public Gameboard() {
+        this.avatar = new Avatar(this);
+        this.board = new Square[10][10];
+        this.gameboard = new JPanel();
+    }
+
+    //Sets up the game; Create frame with its attributes, draws level, adds gameboard and avatar, sets exit on close of program, sets size of frame, sets not resizable, sets location in middle, sets visible, adds reset button
     public void setup() {
         boardLength = board.length - 1;
         startLevel();
         add(gameboard);
         gameboard.add(avatar);
+
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new Dimension(width, height));
         pack();
@@ -41,8 +52,20 @@ public class Gameboard extends JFrame {
         setVisible(true);
     }
 
+    //Returns the length of the gameboard
+    public int getBoardLength() {
+        return this.boardLength;
+    }
+
+    //Returns the length of the gameboard
+    public Square[][] getBoard() {
+        return this.board;
+    }
+
     //Creates avatar (first because we don't want to place a wall on his head), then creates all other objects
     public void startLevel() {
+        gameboard.setLayout(new BorderLayout());
+
         board[3][3] = new Wall();
         board[1][0] = new Wall();
         board[2][0] = new Wall();
@@ -63,6 +86,12 @@ public class Gameboard extends JFrame {
         board[3][1] = new Barricade(key200);
         board[3][2] = new Barricade(key100);
         board[6][6] = new Barricade(key100);
+
+        resetButton.addActionListener(this);
+        resetButton.setBounds(1105,800, 100, 100);
+        resetButton.setText("Reset");
+        gameboard.add(resetButton);
+
     }
 
     //Checks if the barricade code matches the key code
@@ -135,7 +164,7 @@ public class Gameboard extends JFrame {
         try {
             g2d.setColor(Color.LIGHT_GRAY);
             g2d.fillRect(avatar.getCol() * 100, avatar.getRow() * 100 + 26, 100, 100);
-            final BufferedImage image = ImageIO.read(new File("src\\main\\resources\\avatar.png"));
+            final BufferedImage image = ImageIO.read(new File(avatarImg));
             Image BufferedImage = image.getScaledInstance(99, 99, Image.SCALE_SMOOTH);
             g.drawImage(BufferedImage, avatar.getCol() * 100 + 1, avatar.getRow() * 100 + 27, null);
             g2d.setColor(Color.GRAY);
@@ -143,26 +172,26 @@ public class Gameboard extends JFrame {
         } catch (IOException e) {
             System.out.println("Avatar error");
         }
-
-
         try {
-            g2d.setColor(new Color(112,112,112));
-            g2d.fillRect(1000,0,width-1000, height);
+
+            g2d.setColor(new Color(112, 112, 112));
+            g2d.fillRect(1000, 0, width - 1000, height);
 
             g2d.setColor(Color.darkGray);
             g2d.fillRect(1100, 129, 100, 100);
+
             g.setColor(Color.BLACK);
             g.drawString("Currently holding", 1080, 120);
-            if(avatar.getKey().getCode() != 0){
-                final BufferedImage image = ImageIO.read(new File("src\\main\\resources\\key.png"));
+            if (avatar.getKey().getCode() != 0) {
+                final BufferedImage image = ImageIO.read(new File(keyImg));
                 Image BufferedImage = image.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
                 g.drawImage(BufferedImage, 1105, 129, null);
                 g.setColor(Color.WHITE);
-                String keyValue = avatar.getKey().getCode()+ "";
+                String keyValue = avatar.getKey().getCode() + "";
                 g.drawString(keyValue, 1100, 145);
             }
         } catch (IOException e) {
-            System.out.println("KUTIMAGES");
+            System.out.println("Display error");
         }
         setup = false;
     }

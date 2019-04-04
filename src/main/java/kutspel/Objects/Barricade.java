@@ -16,16 +16,13 @@ public class Barricade extends Square {
 
     public boolean checkKey(Key avatarkey) {
         if (this.key == avatarkey) {
-            System.out.println("Goede sleutel");
             return true;
-        }
-        else if (avatarkey.getCode() == 0){
+        } else if (avatarkey.getCode() == 0) {
             JOptionPane.showMessageDialog(null, "Geen sleutel");
             return false;
-        }
-        else{
-                JOptionPane.showMessageDialog(null, "Foutieve sleutel");
-                return false;
+        } else {
+            JOptionPane.showMessageDialog(null, "Foutieve sleutel");
+            return false;
         }
     }
 }
