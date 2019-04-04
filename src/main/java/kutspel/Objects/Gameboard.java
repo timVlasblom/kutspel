@@ -11,8 +11,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 
 public class Gameboard extends JFrame {
-
-    //Size of the application frame, length of the board
+    //Size of the application frame, length of the board array
     static private int width = 1300;
     static private int height = 1029;
     private int boardLength;
@@ -23,20 +22,19 @@ public class Gameboard extends JFrame {
     static private String barricadeImg = "src\\main\\resources\\barricade.png";
     static private String wallImg = "src\\main\\resources\\wall.png";
 
-
-    //Creates new avatar, Square array for board (colum x row), new gameboard and reset button
+    //Avatar and gameboard, Square array for board (colum x row)
     private Avatar avatar;
-    private Square[][] board;
     private JPanel gameboard;
-    private JButton resetButton;
+    private Square[][] board;
 
+    //Sets up the gameboard class
     public Gameboard() {
         this.avatar = new Avatar(this);
         this.board = new Square[10][10];
         this.gameboard = new JPanel();
     }
 
-    //Sets up the game; Create frame with its attributes, draws level, adds gameboard and avatar, sets exit on close of program, sets size of frame, sets not resizable, sets location in middle, sets visible, adds reset button
+    //Sets up the game; Create frame with its attributes, draws level, adds gameboard and avatar to gameboard, sets exit on close of program, sets size of frame, sets not resizable, sets location in middle, sets visible, adds reset button
     public void setup() {
         boardLength = board.length - 1;
         startLevel();
@@ -56,12 +54,12 @@ public class Gameboard extends JFrame {
         return this.boardLength;
     }
 
-    //Returns the length of the gameboard
+    //Returns the array of the gameboard
     public Square[][] getBoard() {
         return this.board;
     }
 
-    //Creates avatar (first because we don't want to place a wall on his head), then creates all other objects
+    //Creates all other objects
     public void startLevel() {
         gameboard.setLayout(new BorderLayout());
 

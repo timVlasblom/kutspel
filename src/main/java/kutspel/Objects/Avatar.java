@@ -5,10 +5,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class Avatar extends JComponent implements KeyListener {
-    //x & y position
+    //x & y position. gameboard + key
     private int xPos;
     private int yPos;
-
     private Gameboard gameboard;
     private Key key;
 
@@ -45,8 +44,11 @@ public class Avatar extends JComponent implements KeyListener {
         return this.yPos;
     }
 
-    //Detects if any of the desired keys is pressed and moves the avatar if possible
+    //Detects if any of the desired keys is pressed and moves the avatar if possible, or brings up the pause menu
     public void keyPressed(KeyEvent event) {
+        lastLocation[0] = xPos;
+        lastLocation[1] = yPos;
+
         int x = 0;
         int y = 0;
 
@@ -68,8 +70,7 @@ public class Avatar extends JComponent implements KeyListener {
         }
 
         if (event.getKeyCode() == KeyEvent.VK_ESCAPE) {
-            Pausemenu pausemenu = new Pausemenu(gameboard);
-            pausemenu.Pausemenu();
+            new Pausemenu(gameboard);
         }
         if (checkPossible(x, y)) {
             moveAvatar(x, y);
@@ -117,23 +118,20 @@ public class Avatar extends JComponent implements KeyListener {
             return false;
     }
 
-    //Sets the last location of the avatar and then moves the avatar
+    //Moves the avatar
     public void moveAvatar(int x, int y) {
-        lastLocation[0] = getCol();
-        lastLocation[1] = getRow();
         xPos += x;
         yPos += y;
         gameboard.repaint();
     }
 
-    //Shows the location of the avatar in the run console and restarts the game when the game has been finished
+    //Gives a message if the game has been finished and brings up the start menu
     public void checkFinish() {
         if (gameboard.getBoardLength() == getCol() & gameboard.getBoardLength() == getRow()) {
             JOptionPane.showMessageDialog(null, "Game finished");
             gameboard.dispose();
             gameboard = new Gameboard();
-            Startmenu startmenu = new Startmenu(gameboard);
-            startmenu.Startmenu();
+            new Startmenu(gameboard);
         }
     }
 

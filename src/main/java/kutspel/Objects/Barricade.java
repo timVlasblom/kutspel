@@ -3,7 +3,7 @@ package kutspel.Objects;
 import javax.swing.*;
 
 public class Barricade extends Square {
-    Key key;
+    private Key key;
 
     public Barricade(Key key) {
         super();

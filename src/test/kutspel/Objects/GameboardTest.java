@@ -35,7 +35,7 @@ public class GameboardTest {
 
     public void keyTest() {
         gameboard.startLevel();
-        assertTrue(gameboard.getBoard()[2][2] instanceof Key);
+        assertTrue(gameboard.getBoard()[2][4] instanceof Key);
     }
 
     @Test
