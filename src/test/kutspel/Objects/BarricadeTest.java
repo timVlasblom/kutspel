@@ -1,4 +1,4 @@
-package kutspel.Objects;
+/*package kutspel.Objects;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -27,4 +27,4 @@ public class BarricadeTest {
         assertTrue(barricade.checkKey(key));
         assertFalse(barricade.checkKey(key2));
     }
-}
+}*/

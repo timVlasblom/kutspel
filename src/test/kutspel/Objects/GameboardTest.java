@@ -1,4 +1,4 @@
-package kutspel.Objects;
+/*package kutspel.Objects;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -43,4 +43,4 @@ public class GameboardTest {
         gameboard.startLevel();
         assertTrue(gameboard.getBoard()[6][6] instanceof Barricade);
     }
-}
+}*/

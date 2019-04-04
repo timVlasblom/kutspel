@@ -47,16 +47,6 @@ public class Avatar extends JComponent implements KeyListener {
         return this.yPos;
     }
 
-    //Returns the last known x position of the avatar
-    public int getLocationX() {
-        return this.lastLocation[0];
-    }
-
-    //Returns the last known y position of the avatar
-    public int getLocationY() {
-        return this.lastLocation[1];
-    }
-
     //Detects if any of the desired keys is pressed and moves the avatar if possible
     public void keyPressed(KeyEvent event) {
         int x = 0;
@@ -80,8 +70,7 @@ public class Avatar extends JComponent implements KeyListener {
         }
 
         if (event.getKeyCode() == KeyEvent.VK_ESCAPE) {
-            Startmenu startmenu = new Startmenu();
-            startmenu.Startmenu();
+            new Pausemenu(gameboard);
         }
         if (checkPossible(x, y)) {
             moveAvatar(x, y);
@@ -143,8 +132,7 @@ public class Avatar extends JComponent implements KeyListener {
         if (gameboard.getBoardLength() == getCol() & gameboard.getBoardLength() == getRow()) {
             JOptionPane.showMessageDialog(null, "Game finished");
             gameboard.dispose();
-            Startmenu startmenu = new Startmenu();
-            startmenu.Startmenu();
+            Startmenu startmenu = new Startmenu(gameboard);
         }
     }
 

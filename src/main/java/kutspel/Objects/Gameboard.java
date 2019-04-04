@@ -1,6 +1,8 @@
 package kutspel.Objects;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -10,7 +12,7 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
-public class Gameboard extends JFrame {
+public class Gameboard extends JFrame implements ActionListener{
 
     //Size of the application frame, length of the board
     static private int width = 1300;
@@ -85,11 +87,6 @@ public class Gameboard extends JFrame {
         board[3][1] = new Barricade(key200);
         board[3][2] = new Barricade(key100);
         board[6][6] = new Barricade(key100);
-
-        resetButton.addActionListener(this);
-        resetButton.setBounds(1105,800, 100, 100);
-        resetButton.setText("Reset");
-        gameboard.add(resetButton);
 
     }
 
@@ -187,5 +184,9 @@ public class Gameboard extends JFrame {
         } catch (IOException e) {
             System.out.println("Display error");
         }
+    }
+
+    public void actionPerformed(ActionEvent event){
+
     }
 }
