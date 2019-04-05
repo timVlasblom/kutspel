@@ -10,6 +10,8 @@ public class Pausemenu extends Menu {
     public Pausemenu(Gameboard gameboard) {
         super(gameboard);
 
+        setTitle("Pause");
+
         //Create buttons
         JButton resumeButton = new JButton("Resume");
         JButton resetButton = new JButton("Reset game");

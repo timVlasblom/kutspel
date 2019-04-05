@@ -12,7 +12,6 @@ public class Menu extends JFrame {
         this.gameboard = gameboard;
         this.panel = new JPanel();
 
-        setTitle("Menu");
         setSize(400, 65);
         setVisible(true);
         setResizable(false);

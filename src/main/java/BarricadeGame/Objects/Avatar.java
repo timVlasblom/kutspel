@@ -138,7 +138,7 @@ public class Avatar extends JComponent implements KeyListener {
     //Gives a message if the game has been finished and brings up the start menu
     public void checkFinish() {
         if (gameboard.getBoardLength() == getCol() + 1 & gameboard.getBoardLength() == getRow() + 1) {
-            JOptionPane.showMessageDialog(null, "Game finished, well done!");
+            JOptionPane.showMessageDialog(null, "Game finished, well done!","Cleared", JOptionPane.INFORMATION_MESSAGE);
             gameboard.dispose();
             gameboard = new Gameboard();
             new Startmenu(gameboard);

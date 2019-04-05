@@ -205,10 +205,10 @@ public class Gameboard extends JFrame {
             g.drawString("Currently holding:", 1080, 100);
             g.drawString("Press ESC for menu", 1070, 980);
             g.drawString("Controls:", 1050, 490);
-            g.drawString("Up = Arrow up or W", 1050, 510);
-            g.drawString("Down = Arrow Down or S", 1050, 530);
-            g.drawString("Left = Arrow Left or A", 1050, 550);
-            g.drawString("Right = Arrow Right or D", 1050, 570);
+            g.drawString("Up = Arrow up or W", 1050, 530);
+            g.drawString("Down = Arrow Down or S", 1050, 550);
+            g.drawString("Left = Arrow Left or A", 1050, 570);
+            g.drawString("Right = Arrow Right or D", 1050, 590);
         } else {
             g2d.setColor(Color.LIGHT_GRAY);
             g2d.fillRect(avatar.getLocationX() * 100, avatar.getLocationY() * 100, 100, 100);

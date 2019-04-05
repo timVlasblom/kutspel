@@ -10,6 +10,8 @@ public class Startmenu extends Menu {
     public Startmenu(Gameboard gameboard) {
         super(gameboard);
 
+        setTitle("The Big Chungus game");
+
         //Create buttons
         JButton startButton = new JButton("Start game");
         JButton exitButton = new JButton("Exit");
