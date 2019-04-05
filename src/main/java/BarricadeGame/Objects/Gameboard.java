@@ -38,8 +38,6 @@ public class Gameboard extends JFrame {
 
     //Sets up the game; Create frame with its attributes, draws level, adds gameboard and avatar to gameboard, sets exit on close of program, sets size of frame, sets not resizable, sets location in middle, sets visible, sets setup true
     public void setup() {
-        setTitle("Barricade game");
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setPreferredSize(new Dimension(width, height));
         setUndecorated(true);
 
