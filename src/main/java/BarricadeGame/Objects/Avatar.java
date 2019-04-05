@@ -30,12 +30,12 @@ public class Avatar extends JComponent implements KeyListener {
     }
 
     //Returns the last known x position of the avatar
-    public int getLocationX(){
+    public int getLocationX() {
         return lastLocation[0];
     }
 
     //Returns the last known y position of the avatar
-    public int getLocationY(){
+    public int getLocationY() {
         return lastLocation[1];
     }
 
@@ -98,10 +98,10 @@ public class Avatar extends JComponent implements KeyListener {
     public boolean checkPossible(int x, int y) {
         boolean possible = false;
         boolean moveable = true;
-        if (((xPos + x) >= 0) && ((xPos + x) <= gameboard.getBoardLength()) && ((yPos + y) >= 0) && ((yPos + y) <= gameboard.getBoardLength())) {
+        if (((xPos + x) >= 0) && ((xPos + x) < gameboard.getBoardLength()) && ((yPos + y) >= 0) && ((yPos + y) < gameboard.getBoardLength())) {
             possible = true;
-            for (int i = 0; i <= gameboard.getBoardLength(); i++) {
-                for (int j = 0; j <= gameboard.getBoardLength(); j++) {
+            for (int i = 0; i < gameboard.getBoardLength(); i++) {
+                for (int j = 0; j < gameboard.getBoardLength(); j++) {
                     if (gameboard.getBoard()[i][j] == gameboard.getBoard()[xPos + x][yPos + y]) {
                         if (gameboard.getBoard()[i][j] instanceof Wall) {
                             moveable = false;
@@ -137,8 +137,8 @@ public class Avatar extends JComponent implements KeyListener {
 
     //Gives a message if the game has been finished and brings up the start menu
     public void checkFinish() {
-        if (gameboard.getBoardLength() == getCol() & gameboard.getBoardLength() == getRow()) {
-            JOptionPane.showMessageDialog(null, "Game finished");
+        if (gameboard.getBoardLength() == getCol() + 1 & gameboard.getBoardLength() == getRow() + 1) {
+            JOptionPane.showMessageDialog(null, "Game finished, well done!");
             gameboard.dispose();
             gameboard = new Gameboard();
             new Startmenu(gameboard);

@@ -15,7 +15,6 @@ public class Gameboard extends JFrame {
     //Size of the application frame, length of the board array
     static private int width = 1300;
     static private int height = 1029;
-    private int boardLength;
 
     //Static paths of images
     static private String keyImg = "src\\main\\resources\\key.png";
@@ -39,11 +38,11 @@ public class Gameboard extends JFrame {
 
     //Sets up the game; Create frame with its attributes, draws level, adds gameboard and avatar to gameboard, sets exit on close of program, sets size of frame, sets not resizable, sets location in middle, sets visible, sets setup true
     public void setup() {
-        boardLength = board.length - 1;
         startLevel();
         add(gameboard);
         gameboard.add(avatar);
 
+        setTitle("Barricade game");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new Dimension(width, height));
         pack();
@@ -51,12 +50,11 @@ public class Gameboard extends JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
         setup = true;
-
     }
 
     //Returns the length of the gameboard
     public int getBoardLength() {
-        return this.boardLength;
+        return this.board.length;
     }
 
     //Returns the array of the gameboard
@@ -207,32 +205,36 @@ public class Gameboard extends JFrame {
         }
         try {
             g2d.setColor(Color.LIGHT_GRAY);
-            g2d.fillRect(avatar.getCol() * 100, avatar.getRow() * 100 + 26, 100, 100);
+            g2d.fillRect(avatar.getCol() * 100 + 1, avatar.getRow() * 100 + 27, 99, 99);
             final BufferedImage image = ImageIO.read(new File(avatarImg));
             Image BufferedImage = image.getScaledInstance(99, 99, Image.SCALE_SMOOTH);
             g.drawImage(BufferedImage, avatar.getCol() * 100 + 1, avatar.getRow() * 100 + 27, null);
-            g2d.setColor(Color.GRAY);
-            g2d.drawRect(avatar.getCol() * 100, avatar.getRow() * 100 + 26, 100, 100);
         } catch (IOException e) {
             System.out.println("Avatar error");
         }
         try {
-
             g2d.setColor(new Color(112, 112, 112));
             g2d.fillRect(1000, 0, width - 1000, height);
 
             g2d.setColor(Color.darkGray);
-            g2d.fillRect(1100, 129, 100, 100);
+            g2d.fillRect(1100, 125, 100, 100);
 
             g.setColor(Color.BLACK);
-            g.drawString("Currently holding", 1080, 120);
+            g.drawString("Currently holding:", 1080, 100);
+            g.drawString("Press ESC for menu", 1070, 980);
+            g.drawString("Controls:", 1050, 490);
+            g.drawString("Up = Arrow up or W", 1050, 510);
+            g.drawString("Down = Arrow Down or S", 1050, 530);
+            g.drawString("Left = Arrow Left or A", 1050, 550);
+            g.drawString("Right = Arrow Right or D", 1050, 570);
+
             if (avatar.getKey().getCode() != 0) {
                 final BufferedImage image = ImageIO.read(new File(keyImg));
                 Image BufferedImage = image.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-                g.drawImage(BufferedImage, 1105, 129, null);
+                g.drawImage(BufferedImage, 1101, 122, null);
                 g.setColor(Color.WHITE);
                 String keyValue = avatar.getKey().getCode() + "";
-                g.drawString(keyValue, 1100, 145);
+                g.drawString(keyValue, 1105, 145);
             }
         } catch (IOException e) {
             System.out.println("Display error");

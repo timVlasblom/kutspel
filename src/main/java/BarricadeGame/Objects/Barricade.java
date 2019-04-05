@@ -18,10 +18,10 @@ public class Barricade extends Square {
         if (this.key == avatarkey) {
             return true;
         } else if (avatarkey.getCode() == 0) {
-            JOptionPane.showMessageDialog(null, "Geen sleutel");
+            JOptionPane.showMessageDialog(null, "You have no key!");
             return false;
         } else {
-            JOptionPane.showMessageDialog(null, "Foutieve sleutel");
+            JOptionPane.showMessageDialog(null, "You have the wrong key!");
             return false;
         }
     }
