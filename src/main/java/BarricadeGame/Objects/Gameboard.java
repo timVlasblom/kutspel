@@ -11,8 +11,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 
 public class Gameboard extends JFrame {
-
-    //Size of the application frame, length of the board array
+    //Size of the application frame
     static private int width = 1300;
     static private int height = 1000;
 
@@ -26,30 +25,28 @@ public class Gameboard extends JFrame {
     private Avatar avatar;
     private JPanel gameboard;
     private Square[][] board;
-
-    private boolean setup = true;
+    private boolean setup;
 
     //Sets up the gameboard class
     public Gameboard() {
         this.avatar = new Avatar(this);
         this.board = new Square[10][10];
         this.gameboard = new JPanel();
+        setup = true;
     }
 
-    //Sets up the game; Create frame with its attributes, draws level, adds gameboard and avatar to gameboard, sets exit on close of program, sets size of frame, sets not resizable, sets location in middle, sets visible, sets setup true
+    //Sets up the JFrame and the game;
     public void setup() {
         getContentPane().setPreferredSize(new Dimension(width, height));
         setUndecorated(true);
 
-        startLevel();
+        drawLevel();
         add(gameboard);
         gameboard.add(avatar);
 
         pack();
         setLocationRelativeTo(null);
         setVisible(true);
-
-        setup = true;
     }
 
     //Returns the length of the gameboard
@@ -63,7 +60,7 @@ public class Gameboard extends JFrame {
     }
 
     //Creates all other objects
-    public void startLevel() {
+    public void drawLevel() {
         gameboard.setLayout(new BorderLayout());
 
         board[9][9] = new Exit();
@@ -228,12 +225,12 @@ public class Gameboard extends JFrame {
             g2d.setColor(Color.darkGray);
             g2d.fillRect(1100, 125, 100, 100);
             if (avatar.getKey().getCode() != 0) {
-                final BufferedImage image = ImageIO.read(new File(keyImg));
-                Image BufferedImage = image.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-                g.drawImage(BufferedImage, 1101, 122, null);
                 g.setColor(Color.WHITE);
                 String keyValue = avatar.getKey().getCode() + "";
                 g.drawString(keyValue, 1105, 145);
+                final BufferedImage image = ImageIO.read(new File(keyImg));
+                Image BufferedImage = image.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+                g.drawImage(BufferedImage, 1101, 122, null);
             }
         } catch (IOException e) {
             System.out.println("Display error");

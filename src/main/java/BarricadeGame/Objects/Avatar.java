@@ -5,14 +5,12 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class Avatar extends JComponent implements KeyListener {
-    //x & y position. gameboard + key
+    //x&y position, the last known location array of the avatar, gameboard + key
     private int xPos;
     private int yPos;
+    private int[] lastLocation;
     private Gameboard gameboard;
     private Key key;
-
-    //Size of the last known location array of the avatar
-    private int[] lastLocation;
 
     //Sets up the avatar class
     public Avatar(Gameboard gameboard) {
@@ -29,6 +27,16 @@ public class Avatar extends JComponent implements KeyListener {
         this.lastLocation = new int[2];
     }
 
+    //Returns the x position of the avatar
+    public int getCol() {
+        return this.xPos;
+    }
+
+    //Returns the y position of the avatar
+    public int getRow() {
+        return this.yPos;
+    }
+
     //Returns the last known x position of the avatar
     public int getLocationX() {
         return lastLocation[0];
@@ -42,16 +50,6 @@ public class Avatar extends JComponent implements KeyListener {
     //Returns the key
     public Key getKey() {
         return this.key;
-    }
-
-    //Returns the x position of the avatar
-    public int getCol() {
-        return this.xPos;
-    }
-
-    //Returns the y position of the avatar
-    public int getRow() {
-        return this.yPos;
     }
 
     //Detects if any of the desired keys is pressed and moves the avatar if possible, or brings up the pause menu
@@ -78,7 +76,6 @@ public class Avatar extends JComponent implements KeyListener {
             x = 1;
             y = 0;
         }
-
         if (event.getKeyCode() == KeyEvent.VK_ESCAPE) {
             new Pausemenu(gameboard);
         }

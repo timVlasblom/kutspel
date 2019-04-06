@@ -21,26 +21,26 @@ public class GameboardTest {
 
     @Test
     public void wallTest() {
-        gameboard.startLevel();
+        gameboard.drawLevel();
         assertTrue(gameboard.getBoard()[3][3] instanceof Wall);
     }
 
     @Test
     public void exitTest() {
-        gameboard.startLevel();
+        gameboard.drawLevel();
         assertTrue(gameboard.getBoard()[9][9] instanceof Exit);
     }
 
     @Test
 
     public void keyTest() {
-        gameboard.startLevel();
+        gameboard.drawLevel();
         assertTrue(gameboard.getBoard()[2][4] instanceof Key);
     }
 
     @Test
     public void barricadeTest() {
-        gameboard.startLevel();
+        gameboard.drawLevel();
         assertTrue(gameboard.getBoard()[6][6] instanceof Barricade);
     }
 }
